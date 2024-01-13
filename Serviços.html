@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Serviços</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #menu-servicos {
+            background-color: rgba(0, 10, 30, 255);
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 999;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        #menu-servicos h2 {
+            margin-bottom: 20px;
+        }
+
+        #menu-servicos .logo img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        #menu-servicos a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        #menu-servicos a i {
+            margin-right: 10px;
+        }
+
+        #menu-servicos a:hover {
+            color: #0056b3;
+        }
+
+        #conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin-left: 250px;
+        }
+
+        #descricao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 80%;
+        }
+
+        .descricao-texto {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .descricao-imagem {
+            flex: 1;
+            position: relative;
+        }
+
+        .descricao-imagem img {
+            max-width: 100%;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .descricao-imagem:hover img {
+            transform: scale(1.1);
+        }
+
+        .titulo-sobre-imagem {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: rgba(49, 52, 59, 255);
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        #botao-acesso:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: rgba(0, 10, 30, 255);
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .rodape {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .informacoes-contato {
+            text-align: right;
+        }
+
+
+
+@media only screen and (max-width: 768px) {
+    body {
+        text-align: center; 
+    }
+
+    #menu-servicos {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-radius: 0;
+        margin-bottom: 20px;
+    }
+
+    #menu-servicos .logo img {
+        max-width: 60%;
+        margin-bottom: 10px;
+    }
+
+    #menu-servicos a {
+        font-size: 30px;
+    }
+
+    #conteudo {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    #descricao {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .descricao-texto {
+        font-size: 30px;
+    }
+    footer {
+        position: relative;
+    }
+    .direitos-autorais{
+        font-size: 18px;
+    }}
+</style>
+
+</head>
+
+<body>
+    <header>
+        
+    </header>
+
+    <div id="menu-servicos">
+        <div class="logo">
+            <img src="IMG/Brasao KIROS.png" alt="Logo">
+        </div>
+
+        <a href="Percentual De V.html">Percentual De V/D</a>
+        <a href="Codigos.html">Códigos</a>
+        <a href="Informações.html">Informações</a>
+    </div>
+
+    <div id="conteudo">
+        <section id="descricao">
+            <div class="descricao-texto">
+                <h2>Frota Do Kirosteide - Ao seus Postos Marujos!</h2>
+                <p>Este site Foi desenvolvido por um Fã de Word of Warships Legends, e tem como intuito:</p>
+                <ul>
+                    <li>Ajudar os jogadores pertencentes a Frota (KIROS) a obterem melhores informações relacionado ao Percentual de Vitoria e Derrota.</li>
+                    <br>
+                    <li>Obterem codigos Disponiveis e Ativos, para conseguirem caixas, camuflagens, Emblemas e Brasões dentro do Jogo.</li>
+                    <br>
+                    <li>Suporte aos Marujos, para tirarem suas duvidas em relacão aos mais diversos assuntos.</li>
+                </ul>
+            </div>
+
+            <div class="descricao-imagem">
+                <img src="IMG/pNG LOGO KIROS.png" alt="Imagem Grande">
+            </div>
+        </section>
+
+        <footer>
+            <div class="rodape">
+
+            </div>
+            <p class="direitos-autorais">&copy; 2024 Kiros. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

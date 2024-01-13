@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Percentual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background-color: rgba(6, 19, 51, 255);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        strong {
+            color: rgba(6, 19, 51, 255);
+        }
+
+        #escudo {
+            position: absolute;
+            top: 335px;
+            right: 35px;
+            width: 90px;
+            height: 105px;
+            background-color: #ccc;
+            border-radius: 15px;
+            clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        #custom-image {
+            position: absolute;
+            top: 335px;
+            right: 20px;
+            width: 120px; /* Ajuste o tamanho conforme necessário */
+            height: 120px; /* Ajuste o tamanho conforme necessário */
+            object-fit: cover; /* Evita distorções na imagem */
+           border: 2px solid #ffffff; 
+            
+        }
+        .background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+        .botao-seta {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(6, 19, 51, 255);
+            color: #fff;
+            border: none;
+            padding: 10px 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botao-seta:hover {
+            background-color: #0056b3;
+        }
+
+        .botao-seta::before {
+            content: "<";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <img class="background" src="IMG/Plano de fundo 6.jpeg" alt="plano de fundo">
+    <div class="container">
+        <h2>Calculadora de Percentual de Vitória e Derrota</h2>
+        <label for="totalPartidas">Total de Partidas:</label>
+        <input type="number" id="totalPartidas" placeholder="Total de Partidas">
+
+        <label for="vitorias">Vitórias:</label>
+        <input type="number" id="vitorias" placeholder="Número de Vitórias">
+
+        <label for="derrotas">Derrotas:</label>
+        <input type="number" id="derrotas" placeholder="Número de Derrotas">
+
+        <button onclick="calcularPercentual()">Calcular</button>
+
+        <div id="resultado">
+            <p><strong>Percentual de Vitória:</strong> <span id="percentualVitoria">-</span>%</p>
+            <div id="escudo">-</div>
+            <p><strong>Percentual de Derrota:</strong> <span id="percentualDerrota">-</span>%</p>
+            <p><strong>Partidas necessárias para subir para o próximo percentual:</strong> <span id="partidasNecessarias">-</span></p>
+        </div>
+
+        
+        <img src="IMG/escudo png.png" alt="Imagem Personalizada" id="custom-image">
+    </div>
+
+    <a class="botao-seta" href="Serviços.html">Voltar</a>
+    <script>
+        function calcularPercentual() {      
+            const totalPartidas = parseInt(document.getElementById('totalPartidas').value);
+            const vitorias = parseInt(document.getElementById('vitorias').value);
+            const derrotas = parseInt(document.getElementById('derrotas').value);
+          
+            const percentualVitoria = (vitorias / totalPartidas * 100).toFixed(2);
+            const percentualDerrota = (derrotas / totalPartidas * 100).toFixed(2);
+    
+            const proximoPercentual = Math.ceil(percentualVitoria / 5) * 5;     
+            const partidasNecessarias = Math.ceil((proximoPercentual * totalPartidas / 100 - vitorias) / (proximoPercentual / 100));
+    
+            document.getElementById('percentualVitoria').innerText = percentualVitoria;
+            document.getElementById('percentualDerrota').innerText = percentualDerrota;
+            document.getElementById('partidasNecessarias').innerText = partidasNecessarias;
+    
+            const escudo = document.getElementById('escudo');
+            escudo.innerText = Math.round(percentualVitoria) + '%';
+            atualizarCorEscudo(escudo, percentualVitoria);
+        }
+        function atualizarCorEscudo(escudo, percentualVitoria) {
+      
+            if (percentualVitoria >= 1 && percentualVitoria <= 47) {
+                escudo.style.backgroundColor = '#808080'; // Cinza
+            } else if (percentualVitoria >= 48 && percentualVitoria <= 48) {
+                escudo.style.backgroundColor = '#006eb0'; // Azul
+            } else if (percentualVitoria >= 49 && percentualVitoria <= 50) {
+                escudo.style.backgroundColor = '#078884'; // Azul Claro
+            } else if (percentualVitoria >= 51 && percentualVitoria <= 52) {
+                escudo.style.backgroundColor = '#07a056'; // Azul Esverdeado
+            } else if (percentualVitoria >= 53 && percentualVitoria <= 54) {
+                escudo.style.backgroundColor = '#91bb06'; // Amarelo Esverdeado
+            } else if (percentualVitoria >= 55 && percentualVitoria <= 56) {
+                escudo.style.backgroundColor = '#c0b402'; // Amarelo
+            } else if (percentualVitoria >= 57 && percentualVitoria <= 58) {
+                escudo.style.backgroundColor = '#c09205'; // Laranja
+            } else if (percentualVitoria >= 59 && percentualVitoria <= 60) {
+                escudo.style.backgroundColor = '#c55103'; // Laranja Mais Escuro
+            } else if (percentualVitoria >= 61 && percentualVitoria <= 62) {
+                escudo.style.backgroundColor = '#FF0000'; // Vermelho
+            } else {
+                escudo.style.backgroundColor = '#800080'; // Roxo
+            }
+        }
+    </script>
+    
+
+</body>
+</html>

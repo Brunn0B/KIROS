@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIROS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+            position: relative;
+            background-color: black;
+        }
+
+        .background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .overlay-image {
+            width: 30%;
+            height: auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            flex-grow: 1;
+            z-index: 1;
+        }
+
+        .enter-button {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            padding: 10px 120px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            background-color: rgba(0, 10, 30, 255);
+            color: white;
+            border: 1px solid rgba(6, 19, 51, 255);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .enter-button:hover {
+            background-color: rgba(6, 19, 51, 255);
+        }
+
+        @media (max-width: 768px) {
+    .background {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .overlay-image {
+        width: 80%; 
+    }
+
+    .enter-button {
+        padding: 15px 30px;
+        font-size: 18px;
+        position: relative;
+        top: 630px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <img class="background" src="IMG/backgraud.jpg" alt="plano de fundo">
+    <img class="overlay-image" src="IMG/Brazao hd.png" alt="Brasão">
+    <div class="container">
+        <a href="Loguin.Html" class="enter-button">Alistamento</a>
+    </div>
+</body>
+
+</html>

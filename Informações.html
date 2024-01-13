@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Informações</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .img-container {
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .img-container img {
+            width: 70%; /* Defina a largura desejada para as imagens (por exemplo, 70%) */
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            text-align: justify;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .gif-section {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .gif-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #0056b3;
+        }
+
+        .summary {
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #0056b3;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .summary a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: opacity 0.3s;
+        }
+
+        .summary a:hover {
+            opacity: 0.8;
+        }
+        .botao-seta {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(6, 19, 51, 255);
+            color: #fff;
+            border: none;
+            padding: 10px 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botao-seta:hover {
+            background-color: #0056b3;
+        }
+
+        .botao-seta::before {
+            content: "<";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="summary">
+        <a href="#section1">Seção 1</a>
+        <a href="#section2">Seção 2</a>
+        <a href="#section3">Seção 3</a>
+        <a href="#section4">Seção 4</a>
+        <a href="#gifSection">Seção de GIFs</a>
+    </div>
+
+    <div class="container">
+        <div id="section1" class="section">
+            <h2>Seção 1: Título Aqui</h2>
+            <div class="img-container">
+                <img src="IMG/Plano de fundo 5.jpg" alt="Imagem Exemplo 1">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="IMG/lOGO kIROS.jpeg" alt="Imagem Exemplo 2">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="IMG/NAvio com fundo azul.jpeg" alt="Imagem Exemplo 3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+            </div>
+        </div>
+
+        <div id="section2" class="section">
+            <h2>Seção 2: Outro Título</h2>
+            <div class="img-container">
+                <img src="https://placekitten.com/800/500" alt="Imagem Exemplo 4">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="https://placekitten.com/800/501" alt="Imagem Exemplo 5">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="https://placekitten.com/800/502" alt="Imagem Exemplo 6">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+            </div>
+        </div>
+
+        <div id="section3" class="section">
+            <h2>Seção 3: Mais um Título</h2>
+            <div class="img-container">
+                <img src="https://placekitten.com/800/503" alt="Imagem Exemplo 7">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="https://placekitten.com/800/504" alt="Imagem Exemplo 8">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="https://placekitten.com/800/505" alt="Imagem Exemplo 9">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+            </div>
+        </div>
+
+        <div id="section4" class="section">
+            <h2>Seção 4: Último Título</h2>
+            <div class="img-container">
+                <img src="https://placekitten.com/800/506" alt="Imagem Exemplo 10">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="https://placekitten.com/800/507" alt="Imagem Exemplo 11">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+                
+                <img src="https://placekitten.com/800/508" alt="Imagem Exemplo 12">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+            </div>
+        </div>
+
+        <div id="gifSection" class="gif-section">
+            <h2>Seção de GIFs</h2>
+            <img src="https://media.giphy.com/media/l41m4Mrgu6r2C2ATG/giphy.gif" alt="GIF Exemplo 1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+
+            <img src="https://media.giphy.com/media/3o6Zt6MLxSi83M1j4A/giphy.gif" alt="GIF Exemplo 2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+
+            <img src="https://media.giphy.com/media/7TCDp7NslzqE/giphy.gif" alt="GIF Exemplo 3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
+        </div>
+    </div>
+
+    <a class="botao-seta" href="Serviços.html">Voltar</a>
+</body>
+</html>
