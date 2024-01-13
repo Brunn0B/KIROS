@@ -15,6 +15,7 @@
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            overflow-x: hidden; /* Impede a rolagem lateral */
         }
 
         #menu-servicos {
@@ -38,10 +39,14 @@
             margin-bottom: 20px;
         }
 
+        #menu-servicos .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         #menu-servicos .logo img {
             max-width: 150px;
             height: auto;
-            margin-bottom: 20px;
         }
 
         #menu-servicos a {
@@ -67,6 +72,7 @@
             align-items: center;
             padding: 20px;
             margin-left: 250px;
+            min-height: 100vh; /* Garante que o conteúdo tenha pelo menos 100% da altura da tela */
         }
 
         #descricao {
@@ -126,9 +132,11 @@
             width: 100%;
             position: absolute;
             bottom: 0;
+            left: 0;
         }
 
         .rodape {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -139,56 +147,59 @@
             text-align: right;
         }
 
+        @media only screen and (max-width: 768px) {
+            
+            body {
 
+            background-color: #fff;
+        }
+            #menu-servicos {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-radius: 0;
+                margin-bottom: 20px;
+            }
 
-@media only screen and (max-width: 768px) {
-    body {
-        text-align: center; 
-    }
+            #menu-servicos .logo img {
+                max-width: 60%;
+                margin-bottom: 10px;
+            }
 
-    #menu-servicos {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-radius: 0;
-        margin-bottom: 20px;
-    }
+            #menu-servicos a {
+                font-size: 20px;
+            }
 
-    #menu-servicos .logo img {
-        max-width: 60%;
-        margin-bottom: 10px;
-    }
+            #conteudo {
+                margin-left: 0;
+                text-align: left;
+            }
 
-    #menu-servicos a {
-        font-size: 30px;
-    }
+            #descricao {
+                width: 100%;
+                flex-direction: column-reverse;
+            }
 
-    #conteudo {
-        margin-left: 0;
-        text-align: left;
-    }
+            .descricao-texto {
+                font-size: 18px;
+                text-align: center;
+            }
 
-    #descricao {
-        width: 100%;
-        flex-direction: column-reverse;
-    }
+            footer {
+                position: fixed;
+            }
 
-    .descricao-texto {
-        font-size: 30px;
-    }
-    footer {
-        position: relative;
-    }
-    .direitos-autorais{
-        font-size: 18px;
-    }}
-</style>
+            .direitos-autorais {
+                font-size: 14px;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
     <header>
-        
+
     </header>
 
     <div id="menu-servicos">
@@ -199,7 +210,7 @@
         <a href="Percentual De V.html">Percentual De V/D</a>
         <a href="Codigos.html">Códigos</a>
         <a href="Informações.html">Informações</a>
-        
+
     </div>
 
     <div id="conteudo">
@@ -208,9 +219,11 @@
                 <h2>Frota Do Kirosteide - Ao seus Postos Marujos!</h2>
                 <p>Este site Foi desenvolvido por um Fã de Word of Warships Legends, e tem como intuito:</p>
                 <ul>
-                    <li>Ajudar os jogadores pertencentes a Frota (KIROS) a obterem melhores informações relacionado ao Percentual de Vitoria e Derrota.</li>
+                    <li>Ajudar os jogadores pertencentes a Frota (KIROS) a obterem melhores informações relacionado ao
+                        Percentual de Vitoria e Derrota.</li>
                     <br>
-                    <li>Obterem codigos Disponiveis e Ativos, para conseguirem caixas, camuflagens, Emblemas e Brasões dentro do Jogo.</li>
+                    <li>Obterem codigos Disponiveis e Ativos, para conseguirem caixas, camuflagens, Emblemas e Brasões
+                        dentro do Jogo.</li>
                     <br>
                     <li>Suporte aos Marujos, para tirarem suas duvidas em relacão aos mais diversos assuntos.</li>
                 </ul>
@@ -220,14 +233,14 @@
                 <img src="IMG/pNG LOGO KIROS.png" alt="Imagem Grande">
             </div>
         </section>
-
-        <footer>
-            <div class="rodape">
-
-            </div>
-            <p class="direitos-autorais">&copy; 2024 Kiros. Todos os direitos reservados.</p>
-        </footer>
     </div>
+
+    <footer>
+        <div class="rodape">
+
+        </div>
+        <p class="direitos-autorais">&copy; 2024 Kiros. Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>

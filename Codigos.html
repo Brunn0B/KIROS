@@ -112,6 +112,38 @@
             z-index: -1;
             object-fit: cover;
         }
+        
+@media only screen and (max-width: 768px) {
+    .container{
+        font-size: 13px;
+
+    }
+    .botao-seta{
+            top: 11px;
+            left: 1px;
+            font-size: 13px;
+        }
+        .botao-seta::before {
+            content: "<";
+            margin-right: 5px;
+        }
+        .background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+    .container {
+        width: 90%; /* Você pode ajustar a largura conforme necessário */
+    }
+
+    table {
+        width: 90%; /* Ajustei a largura para 90% para dispositivos móveis */
+    }
+}
     </style>
 </head>
 
