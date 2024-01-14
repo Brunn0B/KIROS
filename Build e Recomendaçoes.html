@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendação de Builds</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+
+        .filter-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .ship-filter,
+        .nation-filter,
+        .tier-filter {
+            margin-right: 10px;
+        }
+
+        .builds-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .build-card {
+            width: 200px;
+            height: 300px;
+            margin: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .build-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        .build-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        #popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            max-width: 90%;
+        }
+
+        #close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #popup-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #popup-content>div {
+            width: 48%;
+            /* Adapte o tamanho conforme necessário */
+        }
+        .botao-seta {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(6, 19, 51, 255);
+            color: #fff;
+            border: none;
+            padding: 10px 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botao-seta:hover {
+            background-color: #0056b3;
+        }
+
+        .botao-seta::before {
+            content: "<";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="botao-seta" href="Serviços.html">Voltar</a>
+
+    <h1>Recomendação de Builds</h1>
+
+    <div class="filter-container">
+        <label for="ship-filter">Tipo de Navio:</label>
+        <select id="ship-filter" class="ship-filter">
+            <option value="all">Todos</option>
+            <option value="encouracado">Encouraçado</option>
+            <option value="destroyer">Destroier</option>
+            <option value="cruzador">Cruzador</option>
+            <option value="aircraftCarrier">Porta Avião</option>
+        </select>
+
+        <label for="nation-filter">Nação:</label>
+        <select id="nation-filter" class="nation-filter">
+            <option value="all">Todos</option>
+            <option value="americano">Americano</option>
+            <option value="japones">Japonês</option>
+            <option value="frances">Francês</option>
+            <option value="britanico">Britânico</option>
+            <option value="alemao">Alemão</option>
+            <option value="russo">Russo</option>
+            <option value="italiano">Italiano</option>
+            <option value="chines">Chinês</option>
+            <option value="holandes">Países Baixos</option>
+        </select>
+
+        <label for="tier-filter">Tier:</label>
+        <select id="tier-filter" class="tier-filter">
+            <option value="all">Todos</option>
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="IV">IV</option>
+            <option value="V">V</option>
+            <option value="VI">VI</option>
+            <option value="VII">VII</option>
+            <option value="VIII">VIII</option>
+            <option value="legendary">Lendário</option>
+        </select>
+    </div>
+
+    <div class="builds-container" id="builds-container">
+        <!-- Aqui serão exibidos os cards de builds filtrados -->
+    </div>
+
+    <div id="popup-container">
+        <!-- Aqui serão exibidos os detalhes do navio e do comandante -->
+    </div>
+
+    <script>
+        // Lista fictícia de builds, incluindo o card do comandante
+        const builds = [
+            { ship: 'encouracado', nation: 'americano', tier: 'VII', details: 'Descrição do build 1', commander: { name: 'Comandante 1', image: 'caminho/imagem-1.jpg', story: 'História do Comandante 1' } },
+            { ship: 'destroyer', nation: 'japones', tier: 'V', details: 'Descrição do build 2', commander: { name: 'Comandante 2', image: 'caminho/imagem-2.jpg', story: 'História do Comandante 2' } },
+            { ship: 'cruzador', nation: 'britanico', tier: 'VI', details: 'Descrição do build 3', commander: { name: 'Comandante 3', image: 'caminho/imagem-3.jpg', story: 'História do Comandante 3' } },
+            // Adicione mais builds conforme necessário
+        ];
+    
+        // Adicionando mais 84 cards de cruzadores
+        for (let i = 4; i <= 87; i++) {
+            builds.push({
+                ship: 'cruzador',
+                nation: 'nação' + i,
+                tier: i === 87 ? 'legendary' : 'tier' + i,  // Alteração aqui para lidar com o tier lendário
+                details: 'Descrição do build ' + i,
+                commander: { name: 'Comandante ' + i, image: 'caminho/imagem-' + i + '.jpg', story: 'História do Comandante ' + i }
+            });
+        }
+    
+        // Função para converter número em algarismos romanos
+        function convertToRoman(num) {
+            const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+            return romanNumerals[num - 1];
+        }
+    
+        // Função para atualizar a exibição das builds com base nos filtros selecionados
+        function updateBuilds() {
+            const shipFilter = document.getElementById('ship-filter').value;
+            const nationFilter = document.getElementById('nation-filter').value;
+            const tierFilter = document.getElementById('tier-filter').value;
+    
+            const filteredBuilds = builds.filter(build => (
+                (shipFilter === 'all' || build.ship === shipFilter) &&
+                (nationFilter === 'all' || build.nation === nationFilter) &&
+                (tierFilter === 'all' || (build.tier === 'legendary' ? 'Lendário' : convertToRoman(parseInt(build.tier))) === tierFilter)
+            ));
+    
+            displayBuilds(filteredBuilds);
+        }
+    
+        // Função para exibir as builds na página
+        function displayBuilds(builds) {
+            const buildsContainer = document.getElementById('builds-container');
+            buildsContainer.innerHTML = '';
+    
+            builds.forEach(build => {
+                const buildCard = document.createElement('div');
+                buildCard.className = 'build-card';
+                buildCard.innerHTML = `<div class="build-card-content">
+                                           <img src="${build.commander.image}" alt="${build.commander.name || build.ship}">
+                                           <h3>${build.commander.name || build.ship}</h3>
+                                           <p>Nação: ${build.nation}</p>
+                                           <p>Tier: ${build.tier === 'legendary' ? 'Lendário' : convertToRoman(parseInt(build.tier))}</p>
+                                           <p>${build.details}</p>
+                                       </div>`;
+                buildCard.addEventListener('click', () => showPopup(build));
+                buildsContainer.appendChild(buildCard);
+            });
+        }
+
+        // Função para exibir a janela pop-up com detalhes do navio ou do comandante
+        function showPopup(build) {
+            const popupContainer = document.getElementById('popup-container');
+            popupContainer.innerHTML = '';
+
+            const popupContent = document.createElement('div');
+            popupContent.id = 'popup-content';
+
+            const navioContent = document.createElement('div');
+            navioContent.className = 'build-card';
+            navioContent.innerHTML = `<img src="${build.commander.image}" alt="${build.commander.name || build.ship}">
+                                   <div class="build-card-content">
+                                       <h3>${build.commander.name || build.ship}</h3>
+                                       <p>Nação: ${build.nation}</p>
+                                       <p>Tier: ${build.tier === 'legendary' ? 'Lendário' : convertToRoman(parseInt(build.tier))}</p>
+                                       <p>${build.details}</p>
+                                   </div>`;
+
+            const commanderContent = document.createElement('div');
+            commanderContent.className = 'commander-card';
+            commanderContent.innerHTML = `<img src="${build.commander.image}" alt="Imagem do Comandante">
+                                       <p>
+                                           <strong>Comandante:</strong> ${build.commander.name}<br>
+                                           <strong>História:</strong> ${build.commander.story}
+                                       </p>`;
+
+            // Adiciona botão de fechar
+            const closeButton = document.createElement('span');
+            closeButton.id = 'close-popup';
+            closeButton.textContent = 'X';
+            closeButton.onclick = closePopup;
+
+            // Adiciona o conteúdo ao popup
+            popupContent.appendChild(navioContent);
+            popupContent.appendChild(commanderContent);
+            popupContent.appendChild(closeButton);
+
+            // Exibe a janela pop-up
+            popupContainer.appendChild(popupContent);
+            popupContainer.style.display = 'flex';
+        }
+
+        // Função para fechar a janela pop-up
+        function closePopup() {
+            const popupContainer = document.getElementById('popup-container');
+            popupContainer.style.display = 'none';
+        }
+
+              // Adiciona eventos de mudança nos selects para acionar a atualização das builds
+              document.getElementById('ship-filter').addEventListener('change', updateBuilds);
+        document.getElementById('nation-filter').addEventListener('change', updateBuilds);
+        document.getElementById('tier-filter').addEventListener('change', updateBuilds);
+
+        // Exibe as builds iniciais ao carregar a página
+        updateBuilds();
+    </script>
+</body>
+
+</html>
