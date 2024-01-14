@@ -13,22 +13,26 @@
         }
 
         .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            box-sizing: border-box;
-        }
+    width: 80%;
+    margin: 20px auto;
+    background-color:  rgba(22, 25, 30, 0.578); /* Azul escuro com transparência */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(22, 25, 30, 0.578);
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff; /* Define a cor do texto para branco */
+}
 
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
+
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color:  rgba(22, 25, 30, 0.578); /* Azul escuro com transparência */
+    text-align: center;
+    color: #fff; /* Define a cor do texto para branco */
+}
+
 
         .img-container {
             overflow: hidden;
@@ -47,14 +51,16 @@
         .section p {
             text-align: justify;
             line-height: 1.6;
-            color: #333;
+            color: #ffffff;
         }
 
         .gif-section {
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f0f0f0;
+            margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color:  rgba(22, 25, 30, 0.578); /* Azul escuro com transparência */
+    text-align: center;
+    color: #fff; /* Define a cor do texto para branco */
         }
 
         .gif-section img {
@@ -65,7 +71,7 @@
         }
 
         h2 {
-            color: #0056b3;
+            color: #ffffff;
         }
 
         .summary {
@@ -73,7 +79,7 @@
             left: 10px;
             top: 50%;
             transform: translateY(-50%);
-            background-color: #0056b3;
+            background-color: #ffffff;
             color: #fff;
             padding: 10px;
             border-radius: 5px;
@@ -114,9 +120,28 @@
             content: "<";
             margin-right: 5px;
         }
+        .background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+        .logo {
+            text-align: center;
+           
+        }
+
+        .logo img {
+            max-width: 400px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
+    <img class="background" src="IMG/Walperper info.jpeg" alt="plano de fundo">
     <div class="summary">
         <a href="#section1">Seção 1</a>
         <a href="#section2">Seção 2</a>
@@ -127,7 +152,10 @@
 
     <div class="container">
         <div id="section1" class="section">
-            <h2>Seção 1: Título Aqui</h2>
+            <div class="logo">
+                <img src="IMG/kiro spart.png" alt="Logo">
+            </div>
+            <h2>Ministerio da  Tecnologia e Informação Adverte</h2>
             <div class="img-container">
                 <img src="IMG/Plano de fundo 5.jpg" alt="Imagem Exemplo 1">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat libero sit amet justo ullamcorper, a accumsan urna eleifend. Vestibulum euismod, arcu vitae ultricies ultrices, arcu tortor cursus odio.</p>
