@@ -16,17 +16,16 @@
         }
 
         .container {
-    width: 56%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 20px auto; /* Alteração aqui para centralizar horizontalmente */
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
+            width: 56%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
         h1 {
             color: rgba(49, 52, 59, 255);
@@ -81,6 +80,7 @@
         .delete-button:hover {
             background-color: #cc0000;
         }
+
         .botao-seta {
             position: absolute;
             top: 20px;
@@ -103,6 +103,7 @@
             content: "<";
             margin-right: 5px;
         }
+
         .background {
             width: 100%;
             height: 100%;
@@ -112,38 +113,41 @@
             z-index: -1;
             object-fit: cover;
         }
-        
-@media only screen and (max-width: 768px) {
-    .container{
-        font-size: 13px;
 
-    }
-    .botao-seta{
-            top: 11px;
-            left: 1px;
-            font-size: 13px;
-        }
-        .botao-seta::before {
-            content: "<";
-            margin-right: 5px;
-        }
-        .background {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            object-fit: cover;
-        }
-    .container {
-        width: 90%; /* Você pode ajustar a largura conforme necessário */
-    }
+        @media only screen and (max-width: 768px) {
+            .container {
+                font-size: 13px;
+            }
 
-    table {
-        width: 90%; /* Ajustei a largura para 90% para dispositivos móveis */
-    }
-}
+            .botao-seta {
+                top: 11px;
+                left: 1px;
+                font-size: 13px;
+            }
+
+            .botao-seta::before {
+                content: "<";
+                margin-right: 5px;
+            }
+
+            .background {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                object-fit: cover;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            table {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
@@ -169,7 +173,10 @@
     </div>
 
     <script>
-        function addCode() {
+        const SPREADSHEET_ID = '19dwVozFHSMAR-azNrQYnXtO7yAId9FSuGBfaVwiMnck';
+        const SHEET_NAME = 'Codigos Compartilhados';
+
+        async function addCode() {
             var code = document.getElementById('codeInput').value.trim();
 
             if (code === "") {
@@ -179,21 +186,78 @@
 
             var currentDate = new Date().toLocaleDateString('pt-BR');
 
-            // Constrói a nova linha da tabela
-            var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="deleteCode(this)">Excluir</button></td></tr>';
+            try {
+                await gapi.client.sheets.spreadsheets.values.append({
+                    spreadsheetId: SPREADSHEET_ID,
+                    range: SHEET_NAME + '!A:D',
+                    valueInputOption: 'USER_ENTERED',
+                    insertDataOption: 'INSERT_ROWS',
+                    resource: {
+                        values: [[currentDate, code]]
+                    }
+                });
 
-            // Adiciona a nova linha à tabela
-            document.getElementById('codeBody').innerHTML += newRow;
-
-            // Limpa o campo de entrada
-            document.getElementById('codeInput').value = "";
+                loadCodes();
+            } catch (error) {
+                console.error('Erro ao adicionar código:', error);
+            }
         }
 
-        function deleteCode(button) {
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
+        async function loadCodes() {
+            try {
+                const response = await gapi.client.sheets.spreadsheets.values.get({
+                    spreadsheetId: SPREADSHEET_ID,
+                    range: SHEET_NAME + '!A:D',
+                });
+
+                var values = response.result.values;
+                var codeBody = document.getElementById('codeBody');
+                codeBody.innerHTML = '';
+
+                if (values.length > 0) {
+                    values.forEach(function (row) {
+                        var newRow = `<tr><td>${row[0]}</td><td>${row[1]}</td><td><button class="delete-button" onclick="deleteCode('${row[2]}')">Excluir</button></td></tr>`;
+                        codeBody.innerHTML += newRow;
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao obter códigos:', error);
+            }
         }
+
+        async function deleteCode(rowId) {
+            try {
+                await gapi.client.sheets.spreadsheets.batchUpdate({
+                    spreadsheetId: SPREADSHEET_ID,
+                    resource: {
+                        requests: [{
+                            deleteDimension: {
+                                range: {
+                                    sheetId: 0, // Assuming it's the first sheet
+                                    dimension: 'ROWS',
+                                    startIndex: rowId,
+                                    endIndex: rowId + 1
+                                }
+                            }
+                        }]
+                    }
+                });
+
+                loadCodes();
+            } catch (error) {
+                console.error('Erro ao excluir código:', error);
+            }
+        }
+
+        function initClient() {
+            loadCodes();
+        }
+
+        // Não carregamos a API do Google Sheets, pois não precisamos de uma chave de API pública
+        initClient();
     </script>
+
+    <script src="https://apis.google.com/js/api.js"></script>
 </body>
 
 </html>
