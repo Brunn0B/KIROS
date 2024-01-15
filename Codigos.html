@@ -169,92 +169,31 @@
     </div>
 
     <script>
-   // ...
+        function addCode() {
+            var code = document.getElementById('codeInput').value.trim();
 
-async function addCode() {
-  var code = document.getElementById('codeInput').value.trim();
+            if (code === "") {
+                alert('Por favor, digite um código.');
+                return;
+            }
 
-  if (code === "") {
-    alert('Por favor, digite um código.');
-    return;
-  }
+            var currentDate = new Date().toLocaleDateString('pt-BR');
 
-  try {
-    // Fazer uma solicitação POST para adicionar um código
-    const response = await fetch('https://kirosteide.netlify.app/.netlify/functions/codes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ code }),
-    });
+            // Constrói a nova linha da tabela
+            var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="deleteCode(this)">Excluir</button></td></tr>';
 
-    if (!response.ok) {
-      throw new Error('Erro ao adicionar código.');
-    }
+            // Adiciona a nova linha à tabela
+            document.getElementById('codeBody').innerHTML += newRow;
 
-    // Adiciona o código à tabela na interface do usuário
-    const data = await response.json();
-    var newRow = '<tr><td>' + data.date + '</td><td>' + data.code + '</td><td><button class="delete-button" onclick="deleteCode(this)">Excluir</button></td></tr>';
-    document.getElementById('codeBody').innerHTML += newRow;
+            // Limpa o campo de entrada
+            document.getElementById('codeInput').value = "";
+        }
 
-    // Limpa o campo de entrada
-    document.getElementById('codeInput').value = "";
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function deleteCode(button) {
-  var row = button.parentNode.parentNode;
-  var index = row.rowIndex - 1;
-
-  try {
-    // Fazer uma solicitação DELETE para excluir um código
-    const response = await fetch(`https://kirosteide.netlify.app/.netlify/functions/codes/${index}`, {
-      method: 'DELETE',
-    });
-
-    if (!response.ok) {
-      throw new Error('Erro ao excluir código.');
-    }
-
-    // Remove a linha da tabela na interface do usuário
-    row.parentNode.removeChild(row);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function loadCodes() {
-  try {
-    // Fazer uma solicitação GET para obter todos os códigos
-    const response = await fetch('https://kirosteide.netlify.app/.netlify/functions/codes');
-
-    if (!response.ok) {
-      throw new Error('Erro ao obter códigos.');
-    }
-
-    // Adiciona os códigos à tabela na interface do usuário
-    const data = await response.json();
-    var codeBody = document.getElementById('codeBody');
-    codeBody.innerHTML = '';
-
-    data.forEach(function (codeObj) {
-      var newRow = '<tr><td>' + codeObj.date + '</td><td>' + codeObj.code + '</td><td><button class="delete-button" onclick="deleteCode(this)">Excluir</button></td></tr>';
-      codeBody.innerHTML += newRow;
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// ...
-
-        // Carrega os códigos ao carregar a página
-        loadCodes();
-      </script>
-      
+        function deleteCode(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
 </body>
 
 </html>
