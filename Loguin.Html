@@ -160,24 +160,25 @@
         }
 
         function fazerLogin() {
-            var nome = document.getElementById('nome').value;
-            var senha = document.getElementById('senha').value;
+    var nome = document.getElementById('nome').value;
+    var senha = document.getElementById('senha').value;
 
-            if (!nome || !senha) {
-                alert('Por favor, preencha todos os campos.');
-                return;
-            }
+    if (!nome || !senha) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
 
-            var usuarios = localStorage.getItem('usuarios');
-            usuarios = usuarios ? JSON.parse(usuarios) : {};
+    var usuarios = localStorage.getItem('usuarios');
+    usuarios = usuarios ? JSON.parse(usuarios) : {};
 
-            if (usuarios[nome] && usuarios[nome].senha === senha) {
-                alert('Login bem-sucedido!');
-                window.location.href = '/Serviços.html';
-            } else {
-                alert('Credenciais inválidas. Tente novamente.');
-            }
-        }
+    if (usuarios[nome] && usuarios[nome].email.toLowerCase() === 'comandante@kiros.com.br' && usuarios[nome].senha === senha) {
+        alert('Login bem-sucedido!');
+        window.location.href = '/Serviços.html';
+    } else {
+        alert('Credenciais inválidas. Tente novamente.');
+    }
+}
+
     </script>
 </body>
 
