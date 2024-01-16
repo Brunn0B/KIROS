@@ -21,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    margin: 20px auto; /* Alteração aqui para centralizar horizontalmente */
+    margin: 20px auto;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -137,11 +137,11 @@
             object-fit: cover;
         }
     .container {
-        width: 90%; /* Você pode ajustar a largura conforme necessário */
+        width: 90%;
     }
 
     table {
-        width: 90%; /* Ajustei a largura para 90% para dispositivos móveis */
+        width: 90%;
     }
 }
     </style>
@@ -163,7 +163,7 @@
                 </tr>
             </thead>
             <tbody id="codeBody">
-                <!-- Códigos serão inseridos aqui dinamicamente -->
+
             </tbody>
         </table>
     </div>
@@ -179,13 +179,13 @@
 
             var currentDate = new Date().toLocaleDateString('pt-BR');
 
-            // Constrói a nova linha da tabela
+            
             var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="deleteCode(this)">Excluir</button></td></tr>';
 
-            // Adiciona a nova linha à tabela
+            
             document.getElementById('codeBody').innerHTML += newRow;
 
-            // Limpa o campo de entrada
+            
             document.getElementById('codeInput').value = "";
         }
 
