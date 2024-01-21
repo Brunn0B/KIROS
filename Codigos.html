@@ -176,28 +176,55 @@
     </div>
 
     <script>
-        function adicionarCodigo() {
-            var code = document.getElementById('codeInput').value.trim();
-
-            if (code === "") {
-                alert('Por favor, digite um código.');
-                return;
+        async function adicionarCodigo() {
+          var code = document.getElementById('codeInput').value.trim();
+    
+          if (code === "") {
+            alert('Por favor, digite um código.');
+            return;
+          }
+    
+          try {
+            const response = await fetch('/.netlify/functions/saveCode', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ code }),
+            });
+    
+            if (response.ok) {
+              // Atualiza a tabela na página
+              await carregarCodigos();
+            } else {
+              console.error('Erro ao salvar código:', response.status, response.statusText);
             }
-
-            // Adiciona o código diretamente à tabela
-            var currentDate = new Date().toLocaleDateString('pt-BR');
-            var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="excluirCodigo(this)">Excluir</button></td></tr>';
-            document.getElementById('codeBody').innerHTML += newRow;
-
-            // Limpa o campo de entrada
-            document.getElementById('codeInput').value = "";
+          } catch (error) {
+            console.error('Erro ao salvar código:', error);
+          }
+    
+          // Limpa o campo de entrada
+          document.getElementById('codeInput').value = "";
         }
-
-        function excluirCodigo(button) {
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
+    
+        async function carregarCodigos() {
+          try {
+            const response = await fetch('/.netlify/functions/getCodes');
+            if (response.ok) {
+              const codes = await response.json();
+              // Atualiza a tabela na página
+              renderCodes(codes);
+            } else {
+              console.error('Erro ao obter códigos:', response.status, response.statusText);
+            }
+          } catch (error) {
+            console.error('Erro ao obter códigos:', error);
+          }
         }
-    </script>
+    
+        // Carrega os códigos ao carregar a página
+        window.onload = carregarCodigos;
+      </script>
 </body>
 
 </html>
