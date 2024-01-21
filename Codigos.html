@@ -155,12 +155,10 @@
     <img class="background" src="IMG/Plano de fundo 5.jpg" alt="plano de fundo">
     <div class="container">
         <h1>Códigos Compartilhados</h1>
-        <!-- Adicione os atributos data-netlify e netlify, e inclua o campo de entrada oculto -->
-        <form id="seu-form" method="POST" data-netlify="true" netlify>
-            <input type="hidden" name="form-name" value="seu-form">
+        <!-- Remova os atributos data-netlify e netlify -->
+        <form id="seu-form">
             <input type="text" id="codeInput" name="code" placeholder="Digite seu código">
-            <!-- Remova o método 'onclick' e adicione um evento de envio ao formulário -->
-            <button type="submit">Adicionar Código</button>
+            <button type="button" onclick="adicionarCodigo()">Adicionar Código</button>
         </form>
         <a class="botao-seta" href="Serviços.html">Voltar</a>
         <table>
