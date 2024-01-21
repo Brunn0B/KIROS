@@ -175,48 +175,32 @@
     </div>
 
     <script>
-       function addCode() {
-    var code = document.getElementById('codeInput').value.trim();
+        // Atualize o nome do formulário aqui
+        const formName = 'seu-form';
 
-    if (code === "") {
-        alert('Por favor, digite um código.');
-        return;
-    }
+        document.forms[formName].addEventListener('submit', function (event) {
+            event.preventDefault();
 
-    var currentDate = new Date().toLocaleDateString('pt-BR');
+            var code = document.getElementById('codeInput').value.trim();
 
-    // Enviar código para o servidor via AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "add_code.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Atualizar a tabela na página
-            var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="deleteCode(this)">Excluir</button></td></tr>';
-            document.getElementById('codeBody').innerHTML += newRow;
+            if (code === "") {
+                alert('Por favor, digite um código.');
+                return;
+            }
+
+            // Recarregue os dados da tabela após cada envio
+            fetch(window.location.href, { method: 'GET' })
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const htmlDocument = parser.parseFromString(data, 'text/html');
+                    const newTableBody = htmlDocument.getElementById('codeBody');
+                    document.getElementById('codeBody').innerHTML = newTableBody.innerHTML;
+                })
+                .catch(error => console.error('Erro ao recarregar a tabela:', error));
+
             document.getElementById('codeInput').value = "";
-        }
-    };
-    xhr.send("code=" + encodeURIComponent(code));
-}
-
-function deleteCode(button) {
-    var row = button.parentNode.parentNode;
-    var codeId = row.getAttribute("data-code-id");
-
-    // Enviar ID para o servidor via AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "delete_code.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Remover a linha da tabela na página
-            row.parentNode.removeChild(row);
-        }
-    };
-    xhr.send("codeId=" + encodeURIComponent(codeId));
-}
-
+        });
     </script>
 </body>
 
