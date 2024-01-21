@@ -155,9 +155,9 @@
     <img class="background" src="IMG/Plano de fundo 5.jpg" alt="plano de fundo">
     <div class="container">
         <h1>Códigos Compartilhados</h1>
-        <form name="seu-form" method="POST" data-netlify="true">
+        <form name="seu-form" id="seu-form">
             <input type="text" id="codeInput" name="code" placeholder="Digite seu código">
-            <button type="submit">Adicionar Código</button>
+            <button type="button" onclick="adicionarCodigo()">Adicionar Código</button>
         </form>
         <a class="botao-seta" href="Serviços.html">Voltar</a>
         <table>
@@ -175,12 +175,7 @@
     </div>
 
     <script>
-        // Atualize o nome do formulário aqui
-        const formName = 'seu-form';
-
-        document.forms[formName].addEventListener('submit', function (event) {
-            event.preventDefault();
-
+        function adicionarCodigo() {
             var code = document.getElementById('codeInput').value.trim();
 
             if (code === "") {
@@ -188,19 +183,19 @@
                 return;
             }
 
-            // Recarregue os dados da tabela após cada envio
-            fetch(window.location.href, { method: 'GET' })
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const htmlDocument = parser.parseFromString(data, 'text/html');
-                    const newTableBody = htmlDocument.getElementById('codeBody');
-                    document.getElementById('codeBody').innerHTML = newTableBody.innerHTML;
-                })
-                .catch(error => console.error('Erro ao recarregar a tabela:', error));
+            // Adiciona o código diretamente à tabela
+            var currentDate = new Date().toLocaleDateString('pt-BR');
+            var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="excluirCodigo(this)">Excluir</button></td></tr>';
+            document.getElementById('codeBody').innerHTML += newRow;
 
+            // Limpa o campo de entrada
             document.getElementById('codeInput').value = "";
-        });
+        }
+
+        function excluirCodigo(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
     </script>
 </body>
 
