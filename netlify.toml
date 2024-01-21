@@ -1,0 +1,5 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://kirosteide.netlify.app"
+    Access-Control-Allow-Methods = "POST"
