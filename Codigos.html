@@ -155,10 +155,12 @@
     <img class="background" src="IMG/Plano de fundo 5.jpg" alt="plano de fundo">
     <div class="container">
         <h1>Códigos Compartilhados</h1>
-        <!-- Remova o atributo 'name' e adicione 'netlify' -->
-        <form id="seu-form" method="POST" netlify>
+        <!-- Adicione os atributos data-netlify e netlify, e inclua o campo de entrada oculto -->
+        <form id="seu-form" method="POST" data-netlify="true" netlify>
+            <input type="hidden" name="form-name" value="seu-form">
             <input type="text" id="codeInput" name="code" placeholder="Digite seu código">
-            <button type="button" onclick="adicionarCodigo()">Adicionar Código</button>
+            <!-- Remova o método 'onclick' e adicione um evento de envio ao formulário -->
+            <button type="submit">Adicionar Código</button>
         </form>
         <a class="botao-seta" href="Serviços.html">Voltar</a>
         <table>
@@ -197,28 +199,6 @@
             var row = button.parentNode.parentNode;
             row.parentNode.removeChild(row);
         }
-    </script>
-
-    <!-- Remova a tag <script> existente e adicione o script abaixo para recarregar os dados da tabela -->
-    <script>
-        document.getElementById('seu-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            var code = document.getElementById('codeInput').value.trim();
-
-            if (code === "") {
-                alert('Por favor, digite um código.');
-                return;
-            }
-
-            // Atualiza a tabela na página sem recarregar
-            var currentDate = new Date().toLocaleDateString('pt-BR');
-            var newRow = '<tr><td>' + currentDate + '</td><td>' + code + '</td><td><button class="delete-button" onclick="excluirCodigo(this)">Excluir</button></td></tr>';
-            document.getElementById('codeBody').innerHTML += newRow;
-
-            // Limpa o campo de entrada
-            document.getElementById('codeInput').value = "";
-        });
     </script>
 </body>
 
