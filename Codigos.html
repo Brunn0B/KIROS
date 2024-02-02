@@ -155,11 +155,12 @@
     <img class="background" src="IMG/Plano de fundo 5.jpg" alt="plano de fundo">
     <div class="container">
         <h1>Códigos Compartilhados</h1>
-        <!-- Remova os atributos data-netlify e netlify -->
-        <form id="seu-form">
+
+        <form id="seu-form" action="processar_formulario.php" method="post">
             <input type="text" id="codeInput" name="code" placeholder="Digite seu código">
-            <button type="button" onclick="adicionarCodigo()">Adicionar Código</button>
+            <button type="submit">Adicionar Código</button>
         </form>
+
         <a class="botao-seta" href="Serviços.html">Voltar</a>
         <table>
             <thead>
@@ -176,55 +177,22 @@
     </div>
 
     <script>
-        async function adicionarCodigo() {
-          var code = document.getElementById('codeInput').value.trim();
-    
-          if (code === "") {
-            alert('Por favor, digite um código.');
-            return;
-          }
-    
-          try {
-            const response = await fetch('/.netlify/functions/saveCode', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ code }),
-            });
-    
-            if (response.ok) {
-              // Atualiza a tabela na página
-              await carregarCodigos();
-            } else {
-              console.error('Erro ao salvar código:', response.status, response.statusText);
-            }
-          } catch (error) {
-            console.error('Erro ao salvar código:', error);
-          }
-    
-          // Limpa o campo de entrada
-          document.getElementById('codeInput').value = "";
-        }
-    
         async function carregarCodigos() {
-          try {
-            const response = await fetch('/.netlify/functions/getCodes');
-            if (response.ok) {
-              const codes = await response.json();
-              // Atualiza a tabela na página
-              renderCodes(codes);
-            } else {
-              console.error('Erro ao obter códigos:', response.status, response.statusText);
+            try {
+                const response = await fetch('/.netlify/functions/getCodes');
+                if (response.ok) {
+                    const codes = await response.json();
+                    renderCodes(codes);
+                } else {
+                    console.error('Erro ao obter códigos:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro ao obter códigos:', error);
             }
-          } catch (error) {
-            console.error('Erro ao obter códigos:', error);
-          }
         }
-    
-        // Carrega os códigos ao carregar a página
+
         window.onload = carregarCodigos;
-      </script>
+    </script>
 </body>
 
 </html>
