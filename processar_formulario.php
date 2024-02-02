@@ -4,36 +4,33 @@ $username = "root";
 $password = "";
 $dbname = "codigos_compartilhados";
 
-// Conectar ao banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar a conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+// Conectar ao banco de dados usando PDO
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // Configurar PDO para lançar exceções em caso de erros
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Conexão falhou: " . $e->getMessage());
 }
 
 // Processar dados do formulário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $code = $_POST["code"];
 
-    // Validar o código (exemplo: garantir que não seja vazio e tem no máximo 255 caracteres)
+    // Validar o código
     if (empty($code) || strlen($code) > 255) {
         echo "Código inválido.";
     } else {
         // Inserir dados no banco de dados usando instrução preparada
-        $sql = "INSERT INTO codigos (code) VALUES (?)";
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare("INSERT INTO codigos (code) VALUES (:code)");
+        $stmt->bindParam(':code', $code);
 
-        if ($stmt) {
-            $stmt->bind_param("s", $code);
-            if ($stmt->execute()) {
-                echo "Código adicionado com sucesso.";
-            } else {
-                echo "Erro ao adicionar código: " . $stmt->error;
-            }
-            $stmt->close();
-        } else {
-            echo "Erro ao preparar a declaração: " . $conn->error;
+        try {
+            $stmt->execute();
+            echo "Código adicionado com sucesso.";
+        } catch (PDOException $e) {
+            echo "Erro ao adicionar código: " . $e->getMessage();
         }
     }
 }
+?>
