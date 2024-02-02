@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar o código
     if (empty($code) || strlen($code) > 255) {
-        echo "Código inválido.";
+        echo json_encode(array("status" => "error", "message" => "Código inválido."));
     } else {
         // Inserir dados no banco de dados usando instrução preparada
         $stmt = $conn->prepare("INSERT INTO codigos (code) VALUES (:code)");
@@ -27,10 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             $stmt->execute();
-            echo "Código adicionado com sucesso.";
+            echo json_encode(array("status" => "success", "message" => "Código adicionado com sucesso."));
         } catch (PDOException $e) {
-            echo "Erro ao adicionar código: " . $e->getMessage();
+            echo json_encode(array("status" => "error", "message" => "Erro ao adicionar código: " . $e->getMessage()));
         }
     }
+} else {
+    // Se não for uma solicitação POST, recuperar os dados do banco de dados
+    $result = $conn->query("SELECT * FROM codigos ORDER BY data_insercao DESC");
+    $codes = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($codes);
 }
 ?>
