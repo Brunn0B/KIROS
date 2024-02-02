@@ -187,15 +187,15 @@
 
             try {
                 const response = await fetch('/.netlify/functions-internal/processar_formulario', {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-        'code': code
-    }),
-});
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            'code': code
+        }),
+    });
 
 
                 if (response.ok) {
@@ -212,7 +212,10 @@
 
         async function carregarCodigos() {
     try {
-        const response = await fetch('processar_formulario.php');
+        const response = await fetch('/.netlify/functions-internal/processar_formulario', {
+            // ...
+        });
+
         if (response.ok) {
             const contentType = response.headers.get("content-type");
             if (contentType && contentType.indexOf("application/json") !== -1) {
@@ -228,6 +231,7 @@
         console.error('Erro ao obter códigos:', error);
     }
 }
+
 
 
         // Função para renderizar os códigos na tabela
