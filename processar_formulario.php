@@ -12,6 +12,7 @@ try {
 } catch (PDOException $e) {
     die("Conexão falhou: " . $e->getMessage());
 }
+
 // Processar dados do formulário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $code = $_POST["code"];
@@ -37,3 +38,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codes = $result->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($codes);
 }
+?>
