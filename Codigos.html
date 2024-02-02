@@ -186,16 +186,17 @@
             }
 
             try {
-                const response = await fetch('processar_formulario.php', {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        'code': code
-                    }),
-                });
+                const response = await fetch('/.netlify/functions/processar_formulario', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+        'code': code
+    }),
+});
+
 
                 if (response.ok) {
                     await carregarCodigos();
