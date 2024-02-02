@@ -210,18 +210,24 @@
         }
 
         async function carregarCodigos() {
-            try {
-                const response = await fetch('processar_formulario.php');
-                if (response.ok) {
-                    const codes = await response.json();
-                    renderCodes(codes);
-                } else {
-                    console.error('Erro ao obter códigos:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Erro ao obter códigos:', error);
+    try {
+        const response = await fetch('processar_formulario.php');
+        if (response.ok) {
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const codes = await response.json();
+                renderCodes(codes);
+            } else {
+                console.error('Erro ao obter códigos: A resposta não é JSON.');
             }
+        } else {
+            console.error('Erro ao obter códigos:', response.status, response.statusText);
         }
+    } catch (error) {
+        console.error('Erro ao obter códigos:', error);
+    }
+}
+
 
         // Função para renderizar os códigos na tabela
         function renderCodes(codes) {
