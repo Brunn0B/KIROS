@@ -177,9 +177,40 @@
     </div>
 
     <script>
+        async function adicionarCodigo() {
+            var code = document.getElementById('codeInput').value.trim();
+    
+            if (code === "") {
+                alert('Por favor, digite um código.');
+                return;
+            }
+    
+            try {
+                const response = await fetch('processar_formulario.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded', // ou 'application/json', dependendo do seu backend
+                    },
+                    body: new URLSearchParams({
+                        'code': code
+                    }),
+                });
+    
+                if (response.ok) {
+                    await carregarCodigos();
+                } else {
+                    console.error('Erro ao salvar código:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro ao salvar código:', error);
+            }
+    
+            document.getElementById('codeInput').value = "";
+        }
+    
         async function carregarCodigos() {
             try {
-                const response = await fetch('/.netlify/functions/getCodes');
+                const response = await fetch('processar_formulario.php'); // altere para o seu script PHP que retorna os códigos
                 if (response.ok) {
                     const codes = await response.json();
                     renderCodes(codes);
@@ -190,9 +221,8 @@
                 console.error('Erro ao obter códigos:', error);
             }
         }
-
-        window.onload = carregarCodigos;
     </script>
+    
 </body>
 
 </html>
