@@ -212,8 +212,11 @@
 
         async function carregarCodigos() {
     try {
-        const response = await fetch('/.netlify/functions-internal/processar_formulario', {
-            // ...
+        const response = await fetch('/.netlify/functions/processar_formulario', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
 
         if (response.ok) {
@@ -231,6 +234,7 @@
         console.error('Erro ao obter códigos:', error);
     }
 }
+
 
 
 
