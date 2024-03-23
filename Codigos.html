@@ -177,7 +177,7 @@
     </div>
 
     <script>
-        async function adicionarCodigo() {
+       async function adicionarCodigo() {
             var code = document.getElementById('codeInput').value.trim();
 
             if (code === "") {
@@ -186,17 +186,15 @@
             }
 
             try {
-                const response = await fetch('.netlify/functions-internal/processar_formulario', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            'code': code
-        }),
-    });
-
+                const response = await fetch('adicionar_codigo.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'code': code
+                    }),
+                });
 
                 if (response.ok) {
                     await carregarCodigos();
@@ -209,7 +207,6 @@
 
             document.getElementById('codeInput').value = "";
         }
-
         async function carregarCodigos() {
     try {
         const response = await fetch('.netlify/functions/processar_formulario', {
