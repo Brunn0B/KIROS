@@ -1,5 +1,5 @@
 <?php
-// Conectar ao banco de dados
+// Conectar ao banco de dados no XAMPP
 $conexao = mysqli_connect("localhost", "root", "", "codigos_compartilhados");
 
 // Verificar a conexão
