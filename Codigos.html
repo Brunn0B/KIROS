@@ -155,12 +155,10 @@
     <img class="background" src="IMG/Plano de fundo 5.jpg" alt="plano de fundo">
     <div class="container">
         <h1>Códigos Compartilhados</h1>
-
         <form id="seu-form">
             <input type="text" id="codeInput" name="code" placeholder="Digite seu código">
             <button type="button" onclick="adicionarCodigo()">Adicionar Código</button>
         </form>
-
         <a class="botao-seta" href="Serviços.html">Voltar</a>
         <table>
             <thead>
@@ -171,13 +169,11 @@
                 </tr>
             </thead>
             <tbody id="codeBody">
-
             </tbody>
         </table>
     </div>
-
     <script>
-       async function adicionarCodigo() {
+        async function adicionarCodigo() {
             var code = document.getElementById('codeInput').value.trim();
 
             if (code === "") {
@@ -207,35 +203,32 @@
 
             document.getElementById('codeInput').value = "";
         }
+
         async function carregarCodigos() {
-    try {
-        const response = await fetch('.netlify/functions/processar_formulario', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+            try {
+                const response = await fetch('carregar_codigos.php', { // Altere para o nome do seu arquivo PHP que carrega os códigos
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-        if (response.ok) {
-            const contentType = response.headers.get("content-type");
-            if (contentType && contentType.indexOf("application/json") !== -1) {
-                const codes = await response.json();
-                renderCodes(codes);
-            } else {
-                console.error('Erro ao obter códigos: A resposta não é JSON.');
+                if (response.ok) {
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        const codes = await response.json();
+                        renderCodes(codes);
+                    } else {
+                        console.error('Erro ao obter códigos: A resposta não é JSON.');
+                    }
+                } else {
+                    console.error('Erro ao obter códigos:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro ao obter códigos:', error);
             }
-        } else {
-            console.error('Erro ao obter códigos:', response.status, response.statusText);
         }
-    } catch (error) {
-        console.error('Erro ao obter códigos:', error);
-    }
-}
 
-
-
-
-        // Função para renderizar os códigos na tabela
         function renderCodes(codes) {
             const codeBody = document.getElementById('codeBody');
             codeBody.innerHTML = "";
@@ -256,10 +249,7 @@
             });
         }
 
-        // Chame carregarCodigos() assim que a página carregar
         window.onload = carregarCodigos;
     </script>
-
 </body>
-
 </html>
