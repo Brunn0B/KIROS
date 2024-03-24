@@ -94,6 +94,7 @@ h1 {
     align-items: flex-start;
     z-index: 99999;
     visibility: visible;
+    color: white;    
 }
 
 .build-card-popup img {
@@ -235,9 +236,9 @@ select:focus {
     </style>
 </head>
 <body>
+
     <video autoplay muted loop id="video-bg">
         <source src="IMG/World Digital Background Loop.mp4" type="video/mp4">
-        <!-- Adicione mais sources se desejar para compatibilidade com diferentes formatos de vídeo -->
         Your browser does not support the video tag.
     </video>
 
@@ -289,7 +290,7 @@ select:focus {
 <div class="build-card" data-ship="encouracado" data-nation="americano" data-tier="VII" data-details="Descrição da build">
     <img src="IMG/Navios/missouri.webp" alt="Imagem da build">
     <div class="build-card-content">
-        <h3>USS Missouri</h3>
+        <h3>Missouri</h3>
         <p>Build Sniper</p>
         <p>Nação: Americano</p>
         <p>Tier: VII</p>
@@ -308,7 +309,7 @@ select:focus {
                 <img class="comandante-img" src="IMG/Comandantes/william-sims.webp" alt="Imagem do Comandante">
                 <div class="build-card-popup-content">
                     <h3>Build do Comandante</h3>
-                    <p>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Indo longe GGG <br>-Habilidade lendaria: Fogo com fogo</p>
+                    <p>-Comandante: William Simms <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Indo longe GGG <br>-Habilidade lendaria: Fogo com fogo</p>
                     <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Comandante:Nobutake Kondô </p>
                 </div>
             </div>
@@ -379,7 +380,7 @@ select:focus {
 <div class="build-card" data-ship="encouracado" data-nation="americano" data-tier="VII" data-details="Descrição da build">
     <img src="IMG/_75e7f3a5-c1d2-41fb-b29c-9c5f89d1ab78-removebg-preview.png" alt="Imagem da build">
     <div class="build-card-content">
-        <h3>USS Missouri</h3>
+        <h3>Missouri</h3>
         <p>Nação: Americano</p>
         <p>Tier: VII</p>
         <p>Classe: Encouraçado</p>
@@ -523,6 +524,36 @@ select:focus {
     
             // Exibe as builds iniciais ao carregar a página
             updateBuilds();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para ordenar os cards por ordem alfabética
+            function sortCardsAlphabetically() {
+                const buildsContainer = document.querySelector('.builds-container');
+                const buildCards = Array.from(document.querySelectorAll('.build-card'));
+                
+                buildCards.sort((a, b) => {
+                    const titleA = a.querySelector('.build-card-content h3').innerText.toUpperCase();
+                    const titleB = b.querySelector('.build-card-content h3').innerText.toUpperCase();
+                    if (titleA < titleB) {
+                        return -1;
+                    }
+                    if (titleA > titleB) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                
+                // Limpa o container e reinsere os cards na ordem correta
+                buildsContainer.innerHTML = '';
+                buildCards.forEach(card => {
+                    buildsContainer.appendChild(card);
+                });
+            }
+
+            // Chame a função para ordenar os cards por ordem alfabética
+            sortCardsAlphabetically();
         });
     </script>
     
