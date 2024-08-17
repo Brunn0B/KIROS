@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>KIrosteide</title>
-  <style>
-    @charset "UTF-8";
+  <style>@charset "UTF-8";
     @import url("https://use.typekit.net/euz1eqv.css");
     
     article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
@@ -71,7 +70,6 @@
     header .logo img {
       width: 100px;
       margin-top: 10px;
-      object-fit: contain; /* Ajusta a proporção da imagem */
     }
     
     header nav {
@@ -95,8 +93,6 @@
     header .burger {
       display: block;
       padding-left: 30px;
-      cursor: pointer; /* Torna o ícone clicável */
-      z-index: 20; /* Garante que o ícone esteja acima de outros elementos */
     }
     
     header .burger:before {
@@ -161,7 +157,7 @@
     #slider img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ajusta a proporção da imagem */
+      object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
@@ -345,44 +341,95 @@
     }
     
     /* Media Queries para Telas Menores */
-    @media screen and (max-width: 600px) {
-      header .logo {
-        width: 60px;
-      }
-    
-      header .logo img {
-        width: 80px;
-      }
-    
-      header .donate-link {
-        font-size: 10px;
-        padding-bottom: 4px;
-      }
-    
-      #slider-content h2 {
-        font-size: 24px;
-        line-height: 24px;
-        margin: 10px 0 30px;
-      }
-    
-      #slider-content .meta {
-        font-size: 10px;
-      }
-    
-      #slider-content #slide-status {
-        font-size: 14px;
-      }
-    
-      #pagination {
-        right: 5px;
-      }
-    
-      #pagination button {
-        width: 12px;
-        height: 12px;
-        margin: 5px 0;
-      }
-    }
+   /* Media Queries para Telas Menores */
+@media screen and (max-width: 600px) {
+  body {
+    overflow: auto; /* Permitir rolagem no mobile */
+  }
+
+  header {
+    height: auto; /* Ajustar a altura do cabeçalho para caber no conteúdo no mobile */
+    position: relative; /* Ajustar a posição do cabeçalho */
+  }
+
+  header .inner {
+    flex-direction: column; /* Organizar o conteúdo verticalmente no mobile */
+    align-items: flex-start; /* Alinhar o conteúdo à esquerda */
+    padding: 10px; /* Ajustar o preenchimento */
+  }
+
+  header .logo {
+    width: 60px;
+  }
+
+  header .logo img {
+    width: 80px;
+  }
+
+  header .donate-link {
+    font-size: 10px;
+    padding-bottom: 4px;
+  }
+
+  header nav {
+    display: none; /* Esconder o menu de navegação padrão */
+  }
+
+  header .burger {
+    display: block; /* Mostrar o ícone do menu hamburguer */
+    cursor: pointer; /* Adicionar um cursor de ponteiro */
+    z-index: 20; /* Garantir que o menu hamburguer esteja acima de outros elementos */
+  }
+
+  /* Exibir menu quando clicado no mobile */
+  header nav.active {
+    display: block;
+    width: 100%; /* Ajustar a largura do menu */
+    background: #23272A; /* Cor de fundo do menu */
+    position: absolute; /* Posicionar o menu abaixo do cabeçalho */
+    top: 115px; /* Ajustar a posição do menu */
+    left: 0;
+    padding: 20px 0; /* Ajustar o preenchimento */
+    text-align: center; /* Alinhar o texto ao centro */
+  }
+
+  header nav a {
+    display: block; /* Exibir links como blocos */
+    margin: 10px 0; /* Ajustar o espaçamento entre os links */
+    font-size: 16px; /* Aumentar o tamanho da fonte para melhor legibilidade */
+  }
+
+  #slider img {
+    object-fit: cover; /* Manter a proporção da imagem */
+    width: 100%;
+    height: auto; /* Ajustar a altura automaticamente */
+  }
+
+  #slider-content h2 {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 10px 0 30px;
+  }
+
+  #slider-content .meta {
+    font-size: 10px;
+  }
+
+  #slider-content #slide-status {
+    font-size: 14px;
+  }
+
+  #pagination {
+    right: 5px;
+  }
+
+  #pagination button {
+    width: 12px;
+    height: 12px;
+    margin: 5px 0;
+  }
+}
+
      </style>
 <body>
 <!-- partial:index.partial.html -->
@@ -455,6 +502,20 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js'></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const burger = document.querySelector('.burger');
+      const nav = document.querySelector('header nav');
+    
+      burger.addEventListener('click', function() {
+        nav.classList.toggle('active');
+      });
+    });
+    </script>
+    
+
 
 <script>
 const displacementSlider = function (opts) {
