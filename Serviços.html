@@ -343,6 +343,7 @@
     @media screen and (max-width: 600px) {
   body {
     overflow: auto; /* Permitir rolagem no mobile */
+    color: #FFFFFF;
   }
 
   header {
@@ -365,8 +366,7 @@
   }
 
   header .donate-link {
-    font-size: 10px;
-    padding-bottom: 4px;
+  display: none;
   }
 
   header nav {
@@ -377,6 +377,10 @@
     display: block; /* Mostrar o ícone do menu hamburguer */
     cursor: pointer; /* Adicionar um cursor de ponteiro */
     z-index: 20; /* Garantir que o menu hamburguer esteja acima de outros elementos */
+    position: absolute; /* Posicionar o menu abaixo do cabeçalho */
+    top: 15px; /* Ajustar a posição do menu */
+    right: 40px;
+    padding: 6px;
   }
 
   /* Exibir menu quando clicado no mobile */
@@ -405,6 +409,7 @@
     display: flex; /* Usar flexbox para ajustar a imagem */
     align-items: center; /* Alinhar a imagem verticalmente no centro */
     justify-content: center; /* Alinhar a imagem horizontalmente no centro */
+    color: #FFFFFF;
   }
 
   #slider img {
@@ -414,16 +419,19 @@
   }
 
   #slider-content h2 {
+    color: #fdfdfc;
     font-size: 24px;
     line-height: 24px;
     margin: 10px 0 30px;
   }
 
   #slider-content .meta {
+    color: #fdfdfc;
     font-size: 10px;
   }
 
   #slider-content #slide-status {
+    color: #fdfdfc;
     font-size: 14px;
   }
 
@@ -445,6 +453,13 @@
     display: block;
     width: 100%; /* Ajuste conforme necessário */
     height: auto;
+  }
+
+  @kyframe loaderAnim {
+    to {
+      opacity: 1;
+      transform: scale3d(0.5, 0.5, 1);
+    }
   }
 }
 
@@ -495,10 +510,7 @@
             <img src="IMG/backgraud.jpg" class="img-desktop" />
             <img src="IMG/fc95f2ba-7531-48df-bccb-f80d973e29ad.jpeg" class="img-desktop" />
 
-            <img src="IMG/Img CEll.jpg" class="img-mobile" alt="Imagem Mobile" />
-            <img src="IMG/img cell2.jpg" class="img-mobile" alt="Imagem Mobile" />
-            <img src="IMG/img cell3.jpeg.jpg" class="img-mobile" alt="Imagem Mobile" />
-            <img src="IMG/Img CEll4.jpg" class="img-mobile" alt="Imagem Mobile" />
+            <img src="IMG/img cell3.jpeg" class="img-mobile" alt="Imagem Mobile" />
             
 			<div id="pagination">
 				<button class="active" data-slide="0"></button>
