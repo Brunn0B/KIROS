@@ -1,290 +1,576 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Andev Web</title>
+  <style>
+    @charset "UTF-8";
+    @import url("https://use.typekit.net/euz1eqv.css");
+    article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+      display: block;
+    }
+    audio, canvas, video {
+      display: inline-block;
+    }
+    audio:not([controls]) {
+      display: none;
+      height: 0;
+    }
+    [hidden] {
+      display: none;
+    }
+    html {
+      font-family: sans-serif;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #23272A;
+    }
+    header {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 115px;
+      z-index: 10;
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/menutexture.png);
+      background-position: center top;
+      background-size: auto 200px;
+      background-repeat: repeat-x;
+    }
+    header .inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      height: 70px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    header .logo {
+      display: block;
+      width: 76px;
+      height: 90px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+    }
+    header .logo img {
+      width: 100px;
+      margin-top: 10px;
+    }
+    header nav {
+      display: none;
+    }
+    header nav a {
+      font-family: "Arial", serif;
+      font-size: 12px;
+      color: #8c8c8e;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-decoration: none;
+      margin: 0 18px;
+    }
+    header nav a.active, header nav a:hover {
+      color: white;
+    }
+    @media screen and (min-width: 800px) {
+      header nav {
+        display: block;
+      }
+    }
+    header .burger {
+      display: block;
+      position: relative;
+      top: -6px;
+      padding-left: 30px;
+    }
+    header .burger:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 2px;
+      background: white;
+      box-shadow: 0 12px 0 0 white, 0 6px 0 0 white;
+    }
+    @media screen and (min-width: 800px) {
+      header .burger {
+        display: none;
+      }
+    }
+    header .donate-link {
+      width: 72px;
+      text-align: center;
+      position: absolute;
+      right: 10px;
+      top: 27px;
+      font-family: "Arial", sans-serif;
+      font-size: 12px;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-decoration: none;
+      padding-bottom: 6px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    main {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #slider {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    #slider canvas {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+    #slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .slider-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      z-index: 5;
+      color: rgb(27, 26, 26);
+      text-align: center;
+    }
+    #slider-content {
+      padding: 0 10px;
+    }
+    #slider-content h2 {
+      font-family: "acta-display", serif;
+      font-weight: 400;
+      font-size: 30px;
+      letter-spacing: -1px;
+      color: rgb(27, 26, 26);
+      line-height: 30px;
+      margin: 20px 0 60px;
+    }
+    @media screen and (min-width: 800px) {
+      #slider-content h2 {
+        font-size: 110px;
+        line-height: 100px;
+      }
+    }
+    #slider-content span {
+      display: none;
+    }
+    #slider-content .meta {
+      display: inline-block;
+      font-family: "Arial", sans-serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: rgb(27, 26, 26);
+      text-transform: uppercase;
+      position: relative;
+    }
+    @media screen and (min-width: 800px) {
+      #slider-content .meta {
+        font-size: 13px;
+      }
+    }
+    #slider-content .meta:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 5px;
+      right: -55px;
+      width: 45px;
+      height: 2px;
+      background-color: #393d40;
+    }
+    #slider-content #slide-status {
+      margin-top: 10px;
+      font-family: "acta-display", serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: rgb(27, 26, 26);
+    }
+    @media screen and (min-width: 800px) {
+      #slider-content #slide-status {
+        font-size: 34px;
+      }
+    }
+    #pagination {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 30px;
+      z-index: 6;
+    }
+    #pagination button {
+      display: block;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: 0;
+      width: 16px;
+      height: 16px;
+      background-color: #FFFFFF;
+      border-radius: 100%;
+      padding: 0;
+      margin: 30px 0;
+      cursor: pointer;
+      position: relative;
+      opacity: 0.2;
+      transition: opacity 0.2s ease-in-out;
+      outline: none;
+    }
+    #pagination button:hover {
+      opacity: 0.5;
+    }
+    #pagination button.active {
+      opacity: 1;
+    }
+    #pagination button.active:before {
+      width: 300%;
+      height: 300%;
+      opacity: 1;
+    }
+    #pagination button:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out, width 0.4s ease-in-out, height 0.4s ease-in-out;
+    }
+    /* Page Loader */
+    .loading:before {
+      content: "";
+      position: fixed;
+      z-index: 100000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+    }
+    .loading:after {
+      content: "";
+      position: fixed;
+      z-index: 100000;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      margin: -30px 0 0 -30px;
+      pointer-events: none;
+      border-radius: 50%;
+      opacity: 0.4;
+      background: white;
+      animation: loaderAnim 0.7s linear infinite alternate forwards;
+    }
+    @keyframes loaderAnim {
+      to {
+        opacity: 1;
+        transform: scale3d(0.5, 0.5, 1);
+      }
+    }
 
-    <title>Serviços</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <style>
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-      
-
-        #menu-servicos {
-            background-color: rgba(0, 10, 30, 255);
-            color: #fff;
-            padding: 20px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 999;
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        #menu-servicos h2 {
-            margin-bottom: 20px;
-        }
-
-        #menu-servicos .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #menu-servicos .logo img {
-            max-width: 150px;
-            height: auto;
-        }
-
-        #menu-servicos a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 18px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        #menu-servicos a i {
-            margin-right: 10px;
-        }
-
-        #menu-servicos a:hover {
-            color: #0056b3;
-        }
-
-        #conteudo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            margin-left: 250px;
-            min-height: 100vh;
-        }
-
-        #descricao {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            width: 80%;
-        }
-
-        .descricao-texto {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .descricao-imagem {
-            flex: 1;
-            position: relative;
-        }
-
-        .descricao-imagem img {
-            max-width: 100%;
-            border-radius: 5px;
-            transition: transform 0.3s;
-        }
-
-        .descricao-imagem:hover img {
-            transform: scale(1.1);
-        }
-
-        .titulo-sobre-imagem {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            color: rgba(49, 52, 59, 255);
-            text-transform: uppercase;
-            width: 100%;
-        }
-
-        #botao-acesso:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background-color: rgba(0, 10, 30, 255);
-            padding: 5px 0;
-            text-align: center;
-            color: #fff;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .rodape {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .informacoes-contato {
-            text-align: right;
-        }
-
-        @media only screen and (max-width: 768px) {
-
-/* Ajuste geral */
-body {
-    background-color: #fff;
-    font-size: 16px;
-    line-height: 1.5;
+@keyframes rotateAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
-/* Menu de serviços */
-#menu-servicos {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-radius: 0;
-    margin-bottom: 20px;
-    text-align: center;
-    padding: 15px;
-}
-
-#menu-servicos .logo img {
-    max-width: 50%;
-    margin-bottom: 15px;
-}
-
-#menu-servicos a {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #007bff;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    display: inline-block;
-    width: 80%;
-    text-align: center;
-}
-
-#menu-servicos a:hover {
-    color: #0056b3;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Conteúdo principal */
-#conteudo {
-    margin-left: 0;
-    padding: 15px;
-}
-
-#descricao {
-    width: 100%;
-    flex-direction: column-reverse;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.descricao-texto {
-    font-size: 18px;
-    text-align: center;
-}
-
-.descricao-imagem {
-    margin-bottom: 20px;
-}
-
-.descricao-imagem img {
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.titulo-sobre-imagem {
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* Footer */
-footer {
-    position: relative;
-    padding: 15px 0;
-    background-color: rgba(0, 10, 30, 0.9);
-}
-
-.direitos-autorais {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-}
-}
-
-    </style>
-
-</head>
-
+    
+  </style>
 <body>
-    <audio autoplay loop>
-        <source src="IMG/kiross.mp3" type="audio/mp3">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
+<!-- partial:index.partial.html -->
+<body class="loading">
 
-    <div id="menu-servicos">
-        <div class="logo">
-            <img src="IMG/Brasao KIROS.png" alt="Logo">
-        </div>
+	<!-- add karla font -->
 
-        <a href="Percentual De V.html">Percentual De V/D</a>
-        <!--<a href="Codigos.html">Códigos</a>-->
-        <a href="Informações.html">Informações</a>
-        <a href="Build e Recomendaçoes.html">Builds e Recomendações</a>
-   
+	<header>
+		<div class="inner">
+			<div class="logo"><img src="IMG/Brazao hd.png"></div>
+			<div class="burger"></div>
+			<nav>
+				<a class="active" href="Build e Recomendaçoes.html">Builds</a>
+				<a href="Percentual De V.html">Calculadora V/D</a>
+				<a href="Informações.html">Infos do Clan</a>
+				<a href="Codigos.html">Codigos</a>
+			</nav>
+			<a href="#" class="donate-link">KIROS!</a>
+		</div>
+	</header>
 
-    </div>
+	<main>
+		<div id="slider">
 
-    <div id="conteudo">
-        <section id="descricao">
-            <div class="descricao-texto">
-                <h2>Frota Do Kirosteide - Ao seus Postos Marujos!</h2>
-                <p>Este site Foi desenvolvido por um Fã de Word of Warships Legends, e tem como intuito:</p>
-                <ul>
-                    <li>Ajudar os jogadores pertencentes a Frota (KIROS) a obterem melhores informações relacionado ao
-                        Percentual de Vitoria e Derrota.</li>
-                    <br>
-                    <li>Obterem dicas Para builds e Recomendações de Navios e Comandantes.</li>
-                    <br>
-                    <li>Suporte aos Marujos, para tirarem suas duvidas em relacão aos mais diversos assuntos.</li>
-                </ul>
+            <div class="slider-inner">
+                <div id="slider-content">
+                    <div class="meta">Bem-vindo <br>ao KIrosteide</div>
+                    <h2 id="slide-title">Clã <br>KIrosteide</h2>
+                    <span data-slide-title="0">Clã <br>KIrosteide</span>
+                    <span data-slide-title="1">Calculadora <br>de Vitórias <br>e Derrotas</span>
+                    <span data-slide-title="2">Recomendações <br>de Builds</span>
+                    <span data-slide-title="3">Resgate <br>de Códigos</span>
+                    <div class="meta">Sobre Nós</div>
+                    <div id="slide-status">Junte-se ao clã KIrosteide,<br> dedicado à confraternização <br>e vitória no World of Warships!</div>
+                    <span data-slide-status="0">Junte-se ao clã KIrosteide, <br>dedicado à confraternização <br>e vitória no World of Warships!</span>
+                    <span data-slide-status="1">Utilize nossa Calculadora <br>de Vitórias e Derrotas <br>para acompanhar seu desempenho.</span>
+                    <span data-slide-status="2">Receba recomendações <br>de builds para um desempenho <br> ideal.</span>
+                    <span data-slide-status="3">Resgate códigos<br>para benefícios <br>adicionais.</span>
+                </div>
             </div>
+            
 
-            <div class="descricao-imagem">
-                <img src="IMG/pNG LOGO KIROS.png" alt="Imagem Grande">
-            </div>
-        </section>
-    </div>
+			<img src="IMG/Plano de fundo 5.jpg" />
+			<img src="IMG/Plano de fundo 6.jpeg" />
+			<img src="IMG/backgraud.jpg" />
+			<img src="IMG/fc95f2ba-7531-48df-bccb-f80d973e29ad.jpeg" />
 
-    <footer>
-        <div class="rodape">
+			<div id="pagination">
+				<button class="active" data-slide="0"></button>
+				<button data-slide="1"></button>
+				<button data-slide="2"></button>
+				<button data-slide="3"></button>
+			</div>
 
-        </div>
-        <p class="direitos-autorais">&copy; 2024 Kiros. Todos os direitos reservados.</p>
-    </footer>
+		</div>
+	</main>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-40525870-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-40525870-5');
+</script>
+
+	</body>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js'></script>
+
+<script>
+const displacementSlider = function (opts) {
+  let vertex = `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+  `;
+
+  let fragment = `
+      varying vec2 vUv;
+      uniform sampler2D currentImage;
+      uniform sampler2D nextImage;
+      uniform float dispFactor;
+      void main() {
+          vec2 uv = vUv;
+          vec4 _currentImage;
+          vec4 _nextImage;
+          float intensity = 0.3;
+          vec4 orig1 = texture2D(currentImage, uv);
+          vec4 orig2 = texture2D(nextImage, uv);
+          _currentImage = texture2D(currentImage, vec2(uv.x, uv.y + dispFactor * (orig2 * intensity)));
+          _nextImage = texture2D(nextImage, vec2(uv.x, uv.y + (1.0 - dispFactor) * (orig1 * intensity)));
+          vec4 finalTexture = mix(_currentImage, _nextImage, dispFactor);
+          gl_FragColor = finalTexture;
+      }
+  `;
+
+  let images = opts.images;
+  let sliderImages = [];
+  let canvasWidth = images[0].clientWidth;
+  let canvasHeight = images[0].clientHeight;
+  let parent = opts.parent;
+  let renderWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  let renderHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  let renderW = Math.max(renderWidth, canvasWidth);
+  let renderH = canvasHeight;
+
+  let renderer = new THREE.WebGLRenderer({ antialias: false });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setClearColor(0x23272A, 1.0);
+  renderer.setSize(renderW, renderH);
+  parent.appendChild(renderer.domElement);
+
+  let loader = new THREE.TextureLoader();
+  loader.crossOrigin = "anonymous";
+
+  images.forEach(img => {
+    let image = loader.load(img.getAttribute('src') + '?v=' + Date.now());
+    image.magFilter = image.minFilter = THREE.LinearFilter;
+    image.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    sliderImages.push(image);
+  });
+
+  let scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x23272A);
+  let camera = new THREE.OrthographicCamera(
+    renderWidth / -2,
+    renderWidth / 2,
+    renderHeight / 2,
+    renderHeight / -2,
+    1,
+    1000
+  );
+  camera.position.z = 1;
+
+  let mat = new THREE.ShaderMaterial({
+    uniforms: {
+      dispFactor: { type: "f", value: 0.0 },
+      currentImage: { type: "t", value: sliderImages[0] },
+      nextImage: { type: "t", value: sliderImages[1] }
+    },
+    vertexShader: vertex,
+    fragmentShader: fragment,
+    transparent: true,
+    opacity: 1.0
+  });
+
+  let geometry = new THREE.PlaneBufferGeometry(parent.offsetWidth, parent.offsetHeight, 1);
+  let object = new THREE.Mesh(geometry, mat);
+  object.position.set(0, 0, 0);
+  scene.add(object);
+
+  let addEvents = function () {
+    let pagButtons = Array.from(document.getElementById('pagination').querySelectorAll('button'));
+    let isAnimating = false;
+
+    pagButtons.forEach(el => {
+      el.addEventListener('click', function () {
+        if (!isAnimating) {
+          isAnimating = true;
+          document.getElementById('pagination').querySelectorAll('.active')[0].className = '';
+          this.className = 'active';
+
+          let slideId = parseInt(this.dataset.slide, 10);
+
+          mat.uniforms.nextImage.value = sliderImages[slideId];
+          mat.uniforms.nextImage.needsUpdate = true;
+
+          TweenLite.to(mat.uniforms.dispFactor, 1, {
+            value: 1,
+            ease: 'Expo.easeInOut',
+            onComplete: function () {
+              mat.uniforms.currentImage.value = sliderImages[slideId];
+              mat.uniforms.currentImage.needsUpdate = true;
+              mat.uniforms.dispFactor.value = 0.0;
+              isAnimating = false;
+            }
+          });
+
+          let slideTitleEl = document.getElementById('slide-title');
+          let slideStatusEl = document.getElementById('slide-status');
+          let nextSlideTitle = document.querySelectorAll(`[data-slide-title="${slideId}"]`)[0].innerHTML;
+          let nextSlideStatus = document.querySelectorAll(`[data-slide-status="${slideId}"]`)[0].innerHTML;
+
+          TweenLite.fromTo(slideTitleEl, 0.5, {
+            autoAlpha: 1,
+            y: 0
+          }, {
+            autoAlpha: 0,
+            y: 20,
+            ease: 'Expo.easeIn',
+            onComplete: function () {
+              slideTitleEl.innerHTML = nextSlideTitle;
+              TweenLite.to(slideTitleEl, 0.5, {
+                autoAlpha: 1,
+                y: 0
+              });
+            }
+          });
+
+          TweenLite.fromTo(slideStatusEl, 0.5, {
+            autoAlpha: 1,
+            y: 0
+          }, {
+            autoAlpha: 0,
+            y: 20,
+            ease: 'Expo.easeIn',
+            onComplete: function () {
+              slideStatusEl.innerHTML = nextSlideStatus;
+              TweenLite.to(slideStatusEl, 0.5, {
+                autoAlpha: 1,
+                y: 0,
+                delay: 0.1
+              });
+            }
+          });
+        }
+      });
+    });
+  };
+
+  addEvents();
+
+  window.addEventListener('resize', function () {
+    renderer.setSize(renderW, renderH);
+  });
+
+  let animate = function () {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  };
+  animate();
+
+  // Função para avançar automaticamente os slides
+  let currentSlide = 0;
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % sliderImages.length;
+    let button = document.querySelector(`#pagination button[data-slide="${currentSlide}"]`);
+    button.click();
+  }
+
+  // Inicia a mudança automática de slides a cada 4 segundos
+  setInterval(nextSlide, 4000);
+};
+
+imagesLoaded(document.querySelectorAll('img'), () => {
+  document.body.classList.remove('loading');
+  const el = document.getElementById('slider');
+  const imgs = Array.from(el.querySelectorAll('img'));
+  new displacementSlider({
+    parent: el,
+    images: imgs
+  });
+});
+
+</script>
+
 </body>
-
 </html>
