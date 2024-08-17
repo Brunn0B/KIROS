@@ -340,9 +340,7 @@
       }
     }
     
-    /* Media Queries para Telas Menores */
-   /* Media Queries para Telas Menores */
-@media screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) {
   body {
     overflow: auto; /* Permitir rolagem no mobile */
   }
@@ -399,10 +397,20 @@
     font-size: 16px; /* Aumentar o tamanho da fonte para melhor legibilidade */
   }
 
+  #slider {
+    position: relative;
+    width: 100%; /* Largura total do slider */
+    height: 100vh; /* Altura total da tela */
+    overflow: hidden; /* Ocultar o que ultrapassa o contêiner */
+    display: flex; /* Usar flexbox para ajustar a imagem */
+    align-items: center; /* Alinhar a imagem verticalmente no centro */
+    justify-content: center; /* Alinhar a imagem horizontalmente no centro */
+  }
+
   #slider img {
-    object-fit: cover; /* Manter a proporção da imagem */
-    width: 100%;
-    height: auto; /* Ajustar a altura automaticamente */
+    max-width: 100%; /* Largura máxima da imagem */
+    max-height: 100%; /* Altura máxima da imagem */
+    object-fit: cover; /* Ajustar a imagem para cobrir o contêiner mantendo a proporção */
   }
 
   #slider-content h2 {
@@ -427,6 +435,16 @@
     width: 12px;
     height: 12px;
     margin: 5px 0;
+  }
+
+  .img-desktop {
+    display: none;
+  }
+
+  .img-mobile {
+    display: block;
+    width: 100%; /* Ajuste conforme necessário */
+    height: auto;
   }
 }
 
@@ -472,11 +490,16 @@
             </div>
             
 
-			<img src="IMG/Plano de fundo 5.jpg" />
-			<img src="IMG/Plano de fundo 6.jpeg" />
-			<img src="IMG/backgraud.jpg" />
-			<img src="IMG/fc95f2ba-7531-48df-bccb-f80d973e29ad.jpeg" />
+            <img src="IMG/Plano de fundo 5.jpg" class="img-desktop" />
+            <img src="IMG/Plano de fundo 6.jpeg" class="img-desktop" />
+            <img src="IMG/backgraud.jpg" class="img-desktop" />
+            <img src="IMG/fc95f2ba-7531-48df-bccb-f80d973e29ad.jpeg" class="img-desktop" />
 
+            <img src="IMG/Img CEll.jpg" class="img-mobile" alt="Imagem Mobile" />
+            <img src="IMG/img cell2.jpg" class="img-mobile" alt="Imagem Mobile" />
+            <img src="IMG/img cell3.jpeg.jpg" class="img-mobile" alt="Imagem Mobile" />
+            <img src="IMG/Img CEll4.jpg" class="img-mobile" alt="Imagem Mobile" />
+            
 			<div id="pagination">
 				<button class="active" data-slide="0"></button>
 				<button data-slide="1"></button>
