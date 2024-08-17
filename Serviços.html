@@ -2,35 +2,43 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>KIrosteide</title>
   <style>
     @charset "UTF-8";
     @import url("https://use.typekit.net/euz1eqv.css");
+    
     article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
       display: block;
     }
+    
     audio, canvas, video {
       display: inline-block;
     }
+    
     audio:not([controls]) {
       display: none;
       height: 0;
     }
+    
     [hidden] {
       display: none;
     }
+    
     html {
       font-family: sans-serif;
       -ms-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
     }
+    
     body {
       margin: 0;
       overflow: hidden;
       background-color: #23272A;
     }
+    
     header {
-      display: block;
       position: absolute;
       top: 0;
       left: 0;
@@ -42,31 +50,34 @@
       background-size: auto 200px;
       background-repeat: repeat-x;
     }
+    
     header .inner {
       max-width: 1060px;
       margin: 0 auto;
       display: flex;
-      height: 70px;
+      flex-wrap: wrap;
+      height: auto;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: space-between;
+      padding: 0 20px;
     }
+    
     header .logo {
-      display: block;
       width: 76px;
       height: 90px;
-      position: absolute;
-      top: 0;
-      left: 0;
       text-align: center;
     }
+    
     header .logo img {
       width: 100px;
       margin-top: 10px;
+      object-fit: contain; /* Ajusta a proporção da imagem */
     }
+    
     header nav {
       display: none;
     }
+    
     header nav a {
       font-family: "Arial", serif;
       font-size: 12px;
@@ -76,20 +87,18 @@
       text-decoration: none;
       margin: 0 18px;
     }
+    
     header nav a.active, header nav a:hover {
       color: white;
     }
-    @media screen and (min-width: 800px) {
-      header nav {
-        display: block;
-      }
-    }
+    
     header .burger {
       display: block;
-      position: relative;
-      top: -6px;
       padding-left: 30px;
+      cursor: pointer; /* Torna o ícone clicável */
+      z-index: 20; /* Garante que o ícone esteja acima de outros elementos */
     }
+    
     header .burger:before {
       content: "";
       position: absolute;
@@ -100,11 +109,17 @@
       background: white;
       box-shadow: 0 12px 0 0 white, 0 6px 0 0 white;
     }
+    
     @media screen and (min-width: 800px) {
+      header nav {
+        display: block;
+      }
+    
       header .burger {
         display: none;
       }
     }
+    
     header .donate-link {
       width: 72px;
       text-align: center;
@@ -120,18 +135,20 @@
       padding-bottom: 6px;
       border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     }
+    
     main {
-      position: relative;
       width: 100%;
       height: 100vh;
       overflow: hidden;
     }
+    
     #slider {
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
     }
+    
     #slider canvas {
       width: 100%;
       height: 100%;
@@ -140,15 +157,17 @@
       left: 0;
       z-index: 2;
     }
+    
     #slider img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Ajusta a proporção da imagem */
       position: absolute;
       top: 0;
       left: 0;
       z-index: 0;
     }
+    
     .slider-inner {
       position: relative;
       display: flex;
@@ -159,10 +178,13 @@
       z-index: 5;
       color: rgb(27, 26, 26);
       text-align: center;
+      padding: 0 10px;
     }
+    
     #slider-content {
       padding: 0 10px;
     }
+    
     #slider-content h2 {
       font-family: "acta-display", serif;
       font-weight: 400;
@@ -172,15 +194,18 @@
       line-height: 30px;
       margin: 20px 0 60px;
     }
+    
     @media screen and (min-width: 800px) {
       #slider-content h2 {
         font-size: 110px;
         line-height: 100px;
       }
     }
+    
     #slider-content span {
       display: none;
     }
+    
     #slider-content .meta {
       display: inline-block;
       font-family: "Arial", sans-serif;
@@ -190,11 +215,13 @@
       text-transform: uppercase;
       position: relative;
     }
+    
     @media screen and (min-width: 800px) {
       #slider-content .meta {
         font-size: 13px;
       }
     }
+    
     #slider-content .meta:after {
       content: "";
       display: block;
@@ -205,6 +232,7 @@
       height: 2px;
       background-color: #393d40;
     }
+    
     #slider-content #slide-status {
       margin-top: 10px;
       font-family: "acta-display", serif;
@@ -212,47 +240,51 @@
       font-size: 18px;
       color: rgb(27, 26, 26);
     }
+    
     @media screen and (min-width: 800px) {
       #slider-content #slide-status {
         font-size: 34px;
       }
     }
+    
     #pagination {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: 30px;
+      right: 10px;
       z-index: 6;
     }
+    
     #pagination button {
       display: block;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
       border: 0;
       width: 16px;
       height: 16px;
       background-color: #FFFFFF;
       border-radius: 100%;
       padding: 0;
-      margin: 30px 0;
+      margin: 10px 0;
       cursor: pointer;
       position: relative;
       opacity: 0.2;
       transition: opacity 0.2s ease-in-out;
       outline: none;
     }
+    
     #pagination button:hover {
       opacity: 0.5;
     }
+    
     #pagination button.active {
       opacity: 1;
     }
+    
     #pagination button.active:before {
       width: 300%;
       height: 300%;
       opacity: 1;
     }
+    
     #pagination button:before {
       content: "";
       display: block;
@@ -267,6 +299,7 @@
       opacity: 0;
       transition: opacity 0.4s ease-in-out, width 0.4s ease-in-out, height 0.4s ease-in-out;
     }
+    
     /* Page Loader */
     .loading:before {
       content: "";
@@ -278,6 +311,7 @@
       height: 100%;
       background: black;
     }
+    
     .loading:after {
       content: "";
       position: fixed;
@@ -293,24 +327,63 @@
       background: white;
       animation: loaderAnim 0.7s linear infinite alternate forwards;
     }
+    
     @keyframes loaderAnim {
       to {
         opacity: 1;
         transform: scale3d(0.5, 0.5, 1);
       }
     }
-
-
-@keyframes rotateAnim {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
     
-  </style>
+    @keyframes rotateAnim {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    /* Media Queries para Telas Menores */
+    @media screen and (max-width: 600px) {
+      header .logo {
+        width: 60px;
+      }
+    
+      header .logo img {
+        width: 80px;
+      }
+    
+      header .donate-link {
+        font-size: 10px;
+        padding-bottom: 4px;
+      }
+    
+      #slider-content h2 {
+        font-size: 24px;
+        line-height: 24px;
+        margin: 10px 0 30px;
+      }
+    
+      #slider-content .meta {
+        font-size: 10px;
+      }
+    
+      #slider-content #slide-status {
+        font-size: 14px;
+      }
+    
+      #pagination {
+        right: 5px;
+      }
+    
+      #pagination button {
+        width: 12px;
+        height: 12px;
+        margin: 5px 0;
+      }
+    }
+     </style>
 <body>
 <!-- partial:index.partial.html -->
 <body class="loading">
