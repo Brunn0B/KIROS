@@ -138,9 +138,62 @@
             max-width: 400px;
             height: auto;
         }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .popup {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 100%;
+            width: 80%;
+        }
+        .popup h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .popup p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #d30a0a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #d9c512;
+        }
+
     </style>
 </head>
 <body>
+    <div class="overlay">
+        <div class="popup">
+            <h1>Página em Manutenção</h1>
+            <p>Desculpe, esta página está em manutenção por Filosofo_Errado, no momento. Por favor, volte mais tarde.</p>
+            <a class="button" href="Serviços.html">Voltar para Home</a>
+        </div>
+    </div>
+
     <img class="background" src="IMG/Walperper info.jpeg" alt="plano de fundo">
     <div class="summary">
         <a href="#section1">Seção 1</a>
