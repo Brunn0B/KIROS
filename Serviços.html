@@ -105,6 +105,9 @@
       background: white;
       box-shadow: 0 12px 0 0 white, 0 6px 0 0 white;
     }
+
+  
+
     
     @media screen and (min-width: 800px) {
       header nav {
@@ -207,9 +210,18 @@
       font-family: "Arial", sans-serif;
       font-size: 11px;
       letter-spacing: 5px;
-      color: rgb(27, 26, 26);
+      color: rgb(255, 255, 255);
       text-transform: uppercase;
       position: relative;
+    }
+    .caixa {
+      width: 500px;
+      height: 600px;
+      position: absolute;
+      top: 90px;
+      left: 10px;
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.677);
     }
     
     @media screen and (min-width: 800px) {
@@ -226,7 +238,7 @@
       right: -55px;
       width: 45px;
       height: 2px;
-      background-color: #393d40;
+      background-color: #fafbfc;
     }
     
     #slider-content #slide-status {
@@ -239,7 +251,12 @@
     
     @media screen and (min-width: 800px) {
       #slider-content #slide-status {
-        font-size: 34px;
+        font-size: 24px;
+        color: white;
+      }
+      #slider-content h2 {
+        font-size: 90px;    
+        color: white;    
       }
     }
     
@@ -425,15 +442,16 @@
   }
 
   #slider-content h2 {
+
     color: #fdfdfc;
-    font-size: 24px;
+    font-size: 28px;
     line-height: 24px;
     margin: 10px 0 30px;
   }
 
   #slider-content .meta {
     color: #fdfdfc;
-    font-size: 10px;
+    font-size: 14px;
   }
 
   #slider-content #slide-status {
@@ -442,13 +460,14 @@
   }
 
   #pagination {
-    right: 5px;
+    right: 10px;
   }
 
   #pagination button {
-    width: 12px;
-    height: 12px;
+    width: 22px;
+    height: 22px;
     margin: 5px 0;
+    background-color: #23272A;
   }
 
   .img-desktop {
@@ -461,20 +480,28 @@
     height: auto;
   }
 
-  @kyframe loaderAnim {
-    to {
-      opacity: 1;
-      transform: scale3d(0.5, 0.5, 1);
-    }
-  }
-}
 
+  .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .caixa {
+      background-color: #0707079c;
+      position: absolute;
+      width: 250px;
+      height: 300px;
+      top: 200px;
+      left: 10px;
+      z-index: -10; /* Valor negativo para enviar para trás */
+    }
+
+}
      </style>
 <body>
 <!-- partial:index.partial.html -->
 <body class="loading">
-
-	<!-- add karla font -->
 
 	<header>
 		<div class="inner">
@@ -495,18 +522,21 @@
 
             <div class="slider-inner">
                 <div id="slider-content">
-                    <div class="meta">Bem-vindo <br>ao KIrosteide</div>
+                    
                     <h2 id="slide-title">Clã <br>KIrosteide</h2>
                     <span data-slide-title="0">Clã <br>KIrosteide</span>
                     <span data-slide-title="1">Calculadora <br>de Vitórias <br>e Derrotas</span>
-                    <span data-slide-title="2">Recomendações <br>de Builds</span>
+                    <span data-slide-title="2">Builds <br>de <br> Navios</span>
                     <span data-slide-title="3">Resgate <br>de Códigos</span>
-                    <div class="meta">Sobre Nós</div>
+                    <div class="meta">Informações</div>
                     <div id="slide-status">Junte-se ao clã KIrosteide,<br> dedicado à confraternização <br>e vitória no World of Warships!</div>
                     <span data-slide-status="0">Junte-se ao clã KIrosteide, <br>dedicado à confraternização <br>e vitória no World of Warships!</span>
                     <span data-slide-status="1">Utilize nossa Calculadora <br>de Vitórias e Derrotas <br>para acompanhar seu desempenho.</span>
                     <span data-slide-status="2">Receba recomendações <br>de builds para um desempenho <br> ideal.</span>
                     <span data-slide-status="3">Resgate códigos<br>para benefícios <br>adicionais.</span>
+
+                    
+                    <div class="caixa"></div>
                 </div>
             </div>
             
