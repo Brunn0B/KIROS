@@ -1,255 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Códigos Compartilhados</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <title>Códigos de Resgate</title>
     <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
-
         .container {
-            width: 56%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        h1 {
-            color: rgba(49, 52, 59, 255);
-        }
-
         table {
-            width: 50%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: rgba(6, 19, 51, 255);
-            color: white;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 10px;
-            background-color: rgba(6, 19, 51, 255);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .delete-button {
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .delete-button:hover {
-            background-color: #cc0000;
-        }
-
-        .botao-seta {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(6, 19, 51, 255);
-            color: #fff;
-            border: none;
-            padding: 10px 10px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .botao-seta:hover {
-            background-color: #0056b3;
-        }
-
-        .botao-seta::before {
-            content: "<";
-            margin-right: 5px;
-        }
-
-        .background {
             width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            object-fit: cover;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
-
-        @media only screen and (max-width: 768px) {
-            .container {
-                font-size: 13px;
-            }
-
-            .botao-seta {
-                top: 11px;
-                left: 1px;
-                font-size: 13px;
-            }
-
-            .botao-seta::before {
-                content: "<";
-                margin-right: 5px;
-            }
-
-            .background {
-                width: 100%;
-                height: 100%;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: -1;
-                object-fit: cover;
-            }
-
-            .container {
-                width: 90%;
-            }
-
-            table {
-                width: 90%;
-            }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .copy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 0;
+            cursor: pointer;
+        }
+        .copy-button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
-
 <body>
-    <img class="background" src="IMG/Plano de fundo 5.jpg" alt="plano de fundo">
     <div class="container">
-        <h1>Códigos Compartilhados</h1>
-        <form id="seu-form">
-            <input type="text" id="codeInput" name="code" placeholder="Digite seu código">
-            <button type="button" onclick="adicionarCodigo()">Adicionar Código</button>
-        </form>
-        <a class="botao-seta" href="Serviços.html">Voltar</a>
+        <h1>Códigos de Resgate</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Data</th>
                     <th>Código</th>
-                    <th>Ações</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
-            <tbody id="codeBody">
+            <tbody>
+                <tr>
+                    <td>5XU5G1DU8T</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('5XU5G1DU8T')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>N5DEDCVUV8</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('N5DEDCVUV8')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>QT5AHT5S3M</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('QT5AHT5S3M')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>6ATN5M6MND</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('6ATN5M6MND')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>HU2VAL1K0E</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('HU2VAL1K0E')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>QQBB5XCERD</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('QQBB5XCERD')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>1C9Q19L4KT</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('1C9Q19L4KT')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>JRE4XQTS9V</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('JRE4XQTS9V')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>M8N340497H</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('M8N340497H')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>2OEORCJMNJ</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('2OEORCJMNJ')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>3WG2HGBKK2</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('3WG2HGBKK2')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>7AFT3YPCD4</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('7AFT3YPCD4')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>JBA5SA3PF2</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('JBA5SA3PF2')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>UGX1QN8B2D</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('UGX1QN8B2D')">Copiar</button></td>
+                </tr>
+                <tr>
+                    <td>CCOFLEGENDS</td>
+                    <td><button class="copy-button" onclick="copyToClipboard('CCOFLEGENDS')">Copiar</button></td>
+                </tr>
             </tbody>
         </table>
     </div>
     <script>
-        async function adicionarCodigo() {
-            var code = document.getElementById('codeInput').value.trim();
-
-            if (code === "") {
-                alert('Por favor, digite um código.');
-                return;
-            }
-
-            try {
-                const response = await fetch('adicionar_codigo.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        'code': code
-                    }),
-                });
-
-                if (response.ok) {
-                    await carregarCodigos();
-                } else {
-                    console.error('Erro ao salvar código:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Erro ao salvar código:', error);
-            }
-
-            document.getElementById('codeInput').value = "";
+        function copyToClipboard(code) {
+            const el = document.createElement('textarea');
+            el.value = code;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('Código copiado: ' + code);
         }
-
-        async function carregarCodigos() {
-            try {
-                const response = await fetch('carregar_codigos.php', { // Altere para o nome do seu arquivo PHP que carrega os códigos
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (response.ok) {
-                    const contentType = response.headers.get("content-type");
-                    if (contentType && contentType.indexOf("application/json") !== -1) {
-                        const codes = await response.json();
-                        renderCodes(codes);
-                    } else {
-                        console.error('Erro ao obter códigos: A resposta não é JSON.');
-                    }
-                } else {
-                    console.error('Erro ao obter códigos:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Erro ao obter códigos:', error);
-            }
-        }
-
-        function renderCodes(codes) {
-            const codeBody = document.getElementById('codeBody');
-            codeBody.innerHTML = "";
-
-            codes.forEach(code => {
-                const row = document.createElement('tr');
-                const dateCell = document.createElement('td');
-                const codeCell = document.createElement('td');
-                const actionsCell = document.createElement('td');
-
-                dateCell.textContent = code.data_insercao;  // Substitua 'data_insercao' pelo nome correto do campo de data
-                codeCell.textContent = code.code;
-
-                row.appendChild(dateCell);
-                row.appendChild(codeCell);
-                row.appendChild(actionsCell);
-                codeBody.appendChild(row);
-            });
-        }
-
-        window.onload = carregarCodigos;
     </script>
 </body>
 </html>
