@@ -161,19 +161,19 @@ label.card-toggle-label:hover::after {
 	opacity: 0.5;
 }
 
-
+/*---------------------------Imagens dos cards-----------------------*/
 
 #card-1 .card-image {
 	background-image: url(IMG/Navios/Colombo.jpg);
 }
 #card-2 .card-image {
-	background-image: url(https://github.com/VicioBonura/pubimgs/blob/main/motociclista-3.jpg?raw=true);
+	background-image: url(IMG/Navios/Missouri.jpeg);
 }
 #card-3 .card-image {
-	background-image: url(https://github.com/VicioBonura/pubimgs/blob/main/motociclista-2.jpg?raw=true);
+	background-image: url();
 }
 #card-4 .card-image {
-	background-image: url(IMG/Navios/Colombo.jpg);
+	background-image: url();
 }
 
 
@@ -332,11 +332,11 @@ label.card-toggle-label:hover + .card-image {
 }
 
 /*-------------------------*/
-/*    open card section    */
+/*    Abrir card section    */
 /*-------------------------*/
 
-/*label open card*/
-label.open-card-label {
+/*label Abrir card*/
+label.Abrir-card-label {
 	display: block;
 	position: absolute;
 	top: 10px;
@@ -344,12 +344,12 @@ label.open-card-label {
 	transform: translate(-50%, -50%);
 	z-index: 999;
 }
-input.open-card:checked + label.open-card-label {
+input.Abrir-card:checked + label.Abrir-card-label {
 	top: 50%;
 	right: 50%;
 	transform: translate(-50%, -50%);
 }
-label.open-card-label::before {
+label.Abrir-card-label::before {
 	content: "X";
 	display: block;
 	position: absolute;
@@ -371,7 +371,7 @@ label.open-card-label::before {
 	border-bottom-right-radius: 0%;
 }
 
-label.open-card-label::after {
+label.Abrir-card-label::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -388,13 +388,13 @@ label.open-card-label::after {
 	pointer-events: none;
 }
 
-label.open-card-label:hover::after {
+label.Abrir-card-label:hover::after {
 	width: 1250px;
 	height: 1250px;
 }
 
-input.open-card:checked + label.open-card-label::before {
-	content: "OPEN";
+input.Abrir-card:checked + label.Abrir-card-label::before {
+	content: "Abrir";
 	width: 90px;
 	height: 90px;
 	text-align: center;
@@ -404,47 +404,47 @@ input.open-card:checked + label.open-card-label::before {
 	border-top-left-radius: 50%;
 	border-bottom-right-radius: 50%;
 }
-input.open-card:checked ~ label.open-card-label:hover::before {
+input.Abrir-card:checked ~ label.Abrir-card-label:hover::before {
 	width: 100px;
 	height: 100px;
 	line-height: 100px;
 }
-input.open-card:checked ~ label.open-card-label::after {
+input.Abrir-card:checked ~ label.Abrir-card-label::after {
 	background: #00000000;
 }
 
-input.open-card:checked ~ label.card-toggle-label {
+input.Abrir-card:checked ~ label.card-toggle-label {
 	opacity: 0;
 	left: 120%;
 }
 
-/*background open-card*/
-input.open-card:checked ~ .card-image {
+/*background Abrir-card*/
+input.Abrir-card:checked ~ .card-image {
 	background-position: 50% 50%;
 	opacity: 1;
 }
 
-/*card-header open-card*/
-input.open-card:checked ~ .card-header {
+/*card-header Abrir-card*/
+input.Abrir-card:checked ~ .card-header {
 	opacity: 0;
 	top: -100px;
 }
 
-/*card-content open-card*/
-input.open-card:checked ~ .card-content {
+/*card-content Abrir-card*/
+input.Abrir-card:checked ~ .card-content {
 	opacity: 0;
 }
-input.open-card:checked ~ .card-content.left-content {
+input.Abrir-card:checked ~ .card-content.left-content {
 	left: -300px;
 	transition-delay: 0s;
 }
-input.open-card:checked ~ .card-content.right-content {
+input.Abrir-card:checked ~ .card-content.right-content {
 	left: 300px;
 	transition-delay: 0s;
 }
 
-/*card-footer open-card*/
-input.open-card:checked ~ .card-footer {
+/*card-footer Abrir-card*/
+input.Abrir-card:checked ~ .card-footer {
 	opacity: 0;
 	bottom: -100px;
 }
@@ -488,18 +488,70 @@ header img {
 .botao-seta:hover {
     color: #ffcc70;
 }
+
+.filter-container {
+	position: absolute;
+	left: 150px;
+	backgraud-color: #000000;
+	padding: 10px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
     </style>
 
     <header>
         <div class="Brasão">
             <img src="IMG/Brazao hd.png" alt="Brasão">
         </div>
+
         <a class="botao-seta" href="Serviços.html"> <i class="fas fa-arrow-left">Voltar</i></a>
+
+		<div class="filter-container">
+            <label for="ship-filter">Classe:</label>
+            <select id="ship-filter" class="ship-filter">
+                <option value="all">Todos</option>
+                <option value="encouracado">Encouraçado</option>
+                <option value="destroyer">Destroier</option>
+                <option value="cruzador">Cruzador</option>
+                <option value="aircraftCarrier">Porta Avião</option>
+            </select>
+    
+            <label for="nation-filter">Nação:</label>
+            <select id="nation-filter" class="nation-filter">
+                <option value="all">Todos</option>
+                <option value="americano">Americano</option>
+                <option value="japones">Japonês</option>
+                <option value="frances">Francês</option>
+                <option value="britanico">Britânico</option>
+                <option value="alemao">Alemão</option>
+                <option value="russo">Russo</option>
+                <option value="italiano">Italiano</option>
+                <option value="chines">Chinês</option>
+                <option value="holandes">Países Baixos</option>
+            </select>
+    
+            <label for="tier-filter">Tier:</label>
+            <select id="tier-filter" class="tier-filter">
+                <option value="all">Todos</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">Lendário</option>
+            </select>
+        </div>
     </header>
 <!-- partial:index.partial.html -->
-        <div class="card" id="card-1">
-			<input type="checkbox" class="open-card" id="open-card-1" checked />
-			<label class="open-card-label" for="open-card-1"></label>
+            <div class="card" id="card-1" data-ship="encouracado" data-nation="italiano" data-tier="IX" data-details="Descrição da build">
+			<input type="checkbox" class="Abrir-card" id="Abrir-card-1" checked />
+			<label class="Abrir-card-label" for="Abrir-card-1"></label>
 			<input type="checkbox" class="card-toggle" id="card-toggle-1" />
 			<label class="card-toggle-label" for="card-toggle-1"></label>
 			<div class="card-image"></div>
@@ -521,104 +573,133 @@ header img {
 		</div>
 
 
-		<div class="card" id="card-2">
-			<input type="checkbox" class="open-card" id="open-card-2" checked />
-			<label class="open-card-label" for="open-card-2"></label>
+		<div class="card" id="card-2" data-ship="encouracado" data-nation="americano" data-tier="VII" data-details="Descrição da build">
+			<input type="checkbox" class="Abrir-card" id="Abrir-card-2" checked />
+			<label class="Abrir-card-label" for="Abrir-card-2"></label>
 			<input type="checkbox" class="card-toggle" id="card-toggle-2" />
 			<label class="card-toggle-label" for="card-toggle-2"></label>
 			<div class="card-image"></div>
 			<div class="card-header">
-				<h2>Choose<br />your way</h2>
+				<h2>Missouri</h2>
 			</div>
 			<div class="card-content left-content">
-				<h3>Phasellus bibendum semper</h3>
-				<p>Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam.</p>
-				<p>Put aliquip ex ea commodo consequat. Neque porro quisquam est qui dolorem ipsum</p>
-				<a class="card-button" href="#">Read more</a>
+				<h3>Build Sniper</h3>
+				<p>Build Sniper</p>
+                <p>Nação: Americano</p>
+                <p>Tier: VII</p>
+                <p>Classe: Encouraçado</p>
+				<p>Aprimoramentos: <br>-Armas AA Mod-2<br>-Modificaçao de Propulsão 2<br>-Sistema de Ocultamento Mod-1 <br>-Sala de Pilotagem da Artilharia Mod-2 </p>
+				
 			</div>
 			<div class="card-content right-content">
-				<h3>Curabitur fermentum purus</h3>
-				<p>Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu nec ante.</p>
-				<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</p>
-				<a class="card-button" href="#">Read more</a>
-			</div>
-			<div class="card-footer">
-				<a href="#">Discover more</a>
+				<h3>Biuld do Comandante</h3>
+				<p>-Comandante: William Simms <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Indo longe GGG <br>-Habilidade lendaria: Fogo com fogo</p>
+                <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Comandante:Nobutake Kondô </p>
 			</div>
 		</div>
 
 
 		<div class="card" id="card-3">
-			<input type="checkbox" class="open-card" id="open-card-3" checked />
-			<label class="open-card-label" for="open-card-3"></label>
+			<input type="checkbox" class="Abrir-card" id="Abrir-card-3" checked />
+			<label class="Abrir-card-label" for="Abrir-card-3"></label>
 			<input type="checkbox" class="card-toggle" id="card-toggle-3" />
 			<label class="card-toggle-label" for="card-toggle-3"></label>
 			<div class="card-image"></div>
 			<div class="card-header">
-				<h2>Choose<br />your way</h2>
+				<h2>?</h2>
 			</div>
 			<div class="card-content left-content">
-				<h3>Phasellus bibendum semper</h3>
-				<p>Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam.</p>
-				<p>Put aliquip ex ea commodo consequat. Neque porro quisquam est qui dolorem ipsum</p>
-				<a class="card-button" href="#">Read more</a>
+				<h3>?</h3>
+				<p>?</p>
+				<p>?</p>
+				
 			</div>
 			<div class="card-content right-content">
-				<h3>Curabitur fermentum purus</h3>
-				<p>Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu nec ante.</p>
-				<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</p>
-				<a class="card-button" href="#">Read more</a>
-			</div>
-			<div class="card-footer">
-				<a href="#">Discover more</a>
+				<h3>?</h3>
+				<p>?</p>
+				<p>?</p>
 			</div>
 		</div>
 
         <div class="card" id="card-4">
-			<input type="checkbox" class="open-card" id="open-card-4" checked />
-			<label class="open-card-label" for="open-card-4"></label>
+			<input type="checkbox" class="Abrir-card" id="Abrir-card-4" checked />
+			<label class="Abrir-card-label" for="Abrir-card-4"></label>
 			<input type="checkbox" class="card-toggle" id="card-toggle-4" />
 			<label class="card-toggle-label" for="card-toggle-4"></label>
 			<div class="card-image"></div>
 			<div class="card-header">
-				<h2>Cristoforo<br />Colombo</h2>
+				<h2>?</h2>
 			</div>
 			<div class="card-content left-content">
-				<h3>Build Sniper</h3>
-				<p>Nação: Italiano</p>
-                <p>Tier: Lendário</p>
-                <p>Classe: Encouraçado</p>
-                <p>Aprimoramentos: <br>-Sistema de Mira Mod-1 <br>-Modificaçao de Propulsão 2 <br>-Sistema de Ocultamento Mod-1 <br>-Bateria Principal Mod-3</p>
-			</div>
+				<h3>?</h3>
+				<p>?</p>
+                <p>?</p>
+               </div>
 			<div class="card-content right-content">
-				<h3>Build do Comandante</h3>
-                    <p>-Comandante: Angelo Iachino <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Fumaça em alto mar <br>-Habilidade lendaria: Testudo</p>
-                    <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Andrew Cunningham</p>
-			</div>
+				<h3>?</h3>
+				<p>?</p>
+				<p>?</p>
+				<p>?</p>
+           </div>
 		</div>
 
-        <div class="card" id="card-5">
-			<input type="checkbox" class="open-card" id="open-card-5" checked />
-			<label class="open-card-label" for="open-card-5"></label>
+		<div class="card" id="card-5">
+			<input type="checkbox" class="Abrir-card" id="Abrir-card-5" checked />
+			<label class="Abrir-card-label" for="Abrir-card-5"></label>
 			<input type="checkbox" class="card-toggle" id="card-toggle-5" />
 			<label class="card-toggle-label" for="card-toggle-5"></label>
 			<div class="card-image"></div>
 			<div class="card-header">
-				<h2>Cristoforo<br />Colombo</h2>
+				<h2>a</h2>
 			</div>
 			<div class="card-content left-content">
-				<h3>Build Sniper</h3>
-				<p>Nação: Italiano</p>
-                <p>Tier: Lendário</p>
-                <p>Classe: Encouraçado</p>
-                <p>Aprimoramentos: <br>-Sistema de Mira Mod-1 <br>-Modificaçao de Propulsão 2 <br>-Sistema de Ocultamento Mod-1 <br>-Bateria Principal Mod-3</p>
-			</div>
+				<h3>?</h3>
+				<p>?</p>
+                <p>?</p>
+               </div>
 			<div class="card-content right-content">
-				<h3>Build do Comandante</h3>
-                    <p>-Comandante: Angelo Iachino <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Fumaça em alto mar <br>-Habilidade lendaria: Testudo</p>
-                    <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Andrew Cunningham</p>
-			</div>
+				<h3>?</h3>
+				<p>?</p>
+				<p>?</p>
+				<p>?</p>
+           </div>
 		</div>
 
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				function updateBuilds() {
+					const shipFilter = document.getElementById('ship-filter').value;
+					const nationFilter = document.getElementById('nation-filter').value;
+					const tierFilter = document.getElementById('tier-filter').value;
+		
+					const builds = document.querySelectorAll('.card');
+		
+					builds.forEach(build => {
+						const ship = build.getAttribute('data-ship');
+						const nation = build.getAttribute('data-nation');
+						const tier = build.getAttribute('data-tier');
+		
+						const isVisible =
+							(shipFilter === 'all' || ship === shipFilter) &&
+							(nationFilter === 'all' || nation === nationFilter) &&
+							(tierFilter === 'all' || (tier === 'legendary' ? 'Lendário' : tier) === tierFilter);
+		
+						if (isVisible) {
+							build.style.display = 'block';
+						} else {
+							build.style.display = 'none';
+						}
+					});
+				}
+		
+				document.getElementById('ship-filter').addEventListener('change', updateBuilds);
+				document.getElementById('nation-filter').addEventListener('change', updateBuilds);
+				document.getElementById('tier-filter').addEventListener('change', updateBuilds);
+			});
+			</script>
+		
+		
+			
 </body>
 </html>
