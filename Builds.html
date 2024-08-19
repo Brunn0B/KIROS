@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-br" >
+<head>
+  <meta charset="UTF-8">
+  <title>Andev Web</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'>
+
+</head>
+<body>
+    <style>
+        html {
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+}
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+}
+body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            color: #f0f0f0;
+            background: #000000;
+            flex-wrap: wrap; /* Adiciona essa linha */
+            flex-direction: row; /* Adiciona essa linha */
+        }
+@keyframes background-animation {
+	0% {
+		background-position: 5% 0%;
+	}
+	25% {
+		background-position: 20% 80%;
+	}
+	50% {
+		background-position: 96% 100%;
+	}
+	75% {
+		background-position: 80% 10%;
+	}
+	100% {
+		background-position: 5% 0%;
+	}
+}
+body::after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	background: radial-gradient(ellipse, #00000000, #000000cc);
+	z-index: -1;
+}
+.card {
+    width: calc(20% - 20px);
+	position: relative;
+	width: 300px;
+	height: 600px;
+	outline: 2px solid #ffffff66;
+	border-radius: 8px;
+	overflow: hidden;
+	background-color: #000000;
+}
+
+/*checkbox*/
+input[type="checkbox"] {
+	display: none;
+}
+
+/*label left-side*/
+label.card-toggle-label {
+	display: block;
+	position: absolute;
+	z-index: 99;
+	width: 60px;
+	height: 60px;
+	top: 50%;
+	left: 83%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	border: 1px solid #ffffff66;
+	background: #00000033;
+	
+	cursor: pointer;
+	transition: all 0.25s ease-in-out;
+}
+label.card-toggle-label::after,
+label.card-toggle-label::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 30px;
+	height: 6px;
+	transform: translate(-40%, calc(-50% - 8px)) rotate(40deg);
+	border-radius: 3px;
+	background-color: #f0f0f099;
+	transition: all 0.5s ease-in-out;
+}
+label.card-toggle-label::after {
+	transform: translate(-40%, calc(-50% + 8px)) rotate(-40deg);
+}
+label.card-toggle-label:hover {
+	left: 85%;
+}
+label.card-toggle-label:hover::after,
+label.card-toggle-label:hover::before {
+	transform: translate(-40%, calc(-50% - 5px)) rotate(23deg);
+	background-color: #f0f0f0ff;
+}
+label.card-toggle-label:hover::after {
+	transform: translate(-40%, calc(-50% + 5px)) rotate(-23deg);
+}
+
+/*label right-side*/
+.card-toggle:checked ~ label.card-toggle-label {
+	left: 17%;
+}
+.card-toggle:checked ~ label.card-toggle-label:hover {
+	left: 15%;
+}
+.card-toggle:checked ~ label.card-toggle-label::before {
+	transform: translate(-60%, calc(-50% - 8px)) rotate(-40deg);
+}
+.card-toggle:checked ~ label.card-toggle-label::after {
+	transform: translate(-60%, calc(-50% + 8px)) rotate(40deg);
+}
+.card-toggle:checked ~ label.card-toggle-label:hover::before {
+	transform: translate(-60%, calc(-50% - 5px)) rotate(-23deg);
+}
+.card-toggle:checked ~ label.card-toggle-label:hover::after {
+	transform: translate(-60%, calc(-50% + 5px)) rotate(23deg);
+}
+
+/*background left-side*/
+.card-image {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	background-size: cover;
+	background-position: 0% 50%;
+	transition: all 0.5s ease;
+	opacity: 0.5;
+}
+
+
+
+#card-1 .card-image {
+	background-image: url(IMG/Navios/Colombo.jpg);
+}
+#card-2 .card-image {
+	background-image: url(https://github.com/VicioBonura/pubimgs/blob/main/motociclista-3.jpg?raw=true);
+}
+#card-3 .card-image {
+	background-image: url(https://github.com/VicioBonura/pubimgs/blob/main/motociclista-2.jpg?raw=true);
+}
+#card-4 .card-image {
+	background-image: url(IMG/Navios/Colombo.jpg);
+}
+
+
+
+
+
+
+
+
+
+.card:hover .card-image {
+	opacity: 1;
+}
+label.card-toggle-label:hover + .card-image {
+	transition: all 2.5s ease;
+	background-position: 10% 50%;
+}
+
+/*background right-side*/
+.card-toggle:checked ~ .card-image {
+	background-position: 100% 50%;
+}
+.card-toggle:checked ~ label.card-toggle-label:hover + .card-image {
+	transition: all 2.5s ease;
+	background-position: 90% 50%;
+}
+
+/*card header*/
+.card-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: #00000099;
+	border-bottom: 1px solid #ffffff66;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	opacity: 1;
+	transition: all 0.5s ease-in-out;
+}
+.card-header h2 {
+	color: #f0f0f0f0;
+	font-weight: 700;
+	line-height: 0.8em;
+	font-size: 2em;
+	text-align: center;
+}
+
+/*card content*/
+.card-content {
+	position: absolute;
+	width: 300px;
+	height: 400px;
+	top: 100px;
+	padding: 1em;
+	transition: all 0.25s ease-in-out;
+}
+
+.card-content a {
+	display: inline-block;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	color: #f0f0f0;
+	font-weight: 300;
+	text-decoration: none;
+	background: #00000033;
+	
+	border-radius: 6px;
+	border: 1px solid #ffffff33;
+	background-color: #00000066;
+	margin: 30px 10px;
+	transition: all 0.25s;
+}
+.card-content a:hover {
+	border: 1px solid #ffffffcc;
+	background-color: #ffcc7033;
+}
+.card-content h3 {
+	font-size: 1.5em;
+	font-weight: 700;
+	line-height: 1.15em;
+	margin-bottom: 1.15em;
+}
+.card-content p {
+	margin-bottom: 1.15em;
+}
+.card-content.left-content h3,
+.card-content.left-content p {
+	margin-right: 30%;
+}
+.card-content.right-content h3,
+.card-content.right-content p {
+	margin-left: 30%;
+}
+/*card-content left-side*/
+.card-content.left-content {
+	opacity: 1;
+	left: 0;
+	background-image: linear-gradient(to right, #000000aa, #00000000);
+	transition-delay: 0.25s;
+}
+.card-content.right-content {
+	opacity: 0;
+	text-align: right;
+	left: 300px;
+	background-image: linear-gradient(to left, #000000aa, #00000000);
+	transition-delay: 0s;
+}
+
+/*card content right-side*/
+.card-toggle:checked ~ .card-content.left-content {
+	opacity: 0;
+	left: -300px;
+	transition-delay: 0s;
+}
+
+.card-toggle:checked ~ .card-content.right-content {
+	opacity: 1;
+	left: 0px;
+	transition-delay: 0.25s;
+}
+
+/*card footer*/
+.card-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: #00000099;
+	
+	border-top: 1px solid #ffffff66;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 1;
+	transition: all 0.5s ease-in-out;
+}
+.card-footer a {
+	display: block;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	color: #ffffff;
+	border: 1px solid #ffffff33;
+	background-color: #ffcc7099;
+	text-decoration: none;
+	border-radius: 8px;
+	transition: all 0.25s ease-in-out;
+}
+.card-footer a:hover {
+	border: 1px solid #ffffffcc;
+	background-color: #ffcc7033;
+}
+
+/*-------------------------*/
+/*    open card section    */
+/*-------------------------*/
+
+/*label open card*/
+label.open-card-label {
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+}
+input.open-card:checked + label.open-card-label {
+	top: 50%;
+	right: 50%;
+	transform: translate(-50%, -50%);
+}
+label.open-card-label::before {
+	content: "X";
+	display: block;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1002;
+	border-radius: 50%;
+	border: 1px solid #ffffff33;
+	background: #00000066;
+	
+	transition: all 0.25s ease-in-out;
+	cursor: pointer;
+	border-top-left-radius: 0%;
+	border-bottom-right-radius: 0%;
+}
+
+label.open-card-label::after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	background: #00000066;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1001;
+	border-radius: 50%;
+	
+	transition: all 0.5s ease-in-out;
+	pointer-events: none;
+}
+
+label.open-card-label:hover::after {
+	width: 1250px;
+	height: 1250px;
+}
+
+input.open-card:checked + label.open-card-label::before {
+	content: "OPEN";
+	width: 90px;
+	height: 90px;
+	text-align: center;
+	line-height: 90px;
+	overflow: hidden;
+	transition-delay: 0;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+input.open-card:checked ~ label.open-card-label:hover::before {
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+}
+input.open-card:checked ~ label.open-card-label::after {
+	background: #00000000;
+}
+
+input.open-card:checked ~ label.card-toggle-label {
+	opacity: 0;
+	left: 120%;
+}
+
+/*background open-card*/
+input.open-card:checked ~ .card-image {
+	background-position: 50% 50%;
+	opacity: 1;
+}
+
+/*card-header open-card*/
+input.open-card:checked ~ .card-header {
+	opacity: 0;
+	top: -100px;
+}
+
+/*card-content open-card*/
+input.open-card:checked ~ .card-content {
+	opacity: 0;
+}
+input.open-card:checked ~ .card-content.left-content {
+	left: -300px;
+	transition-delay: 0s;
+}
+input.open-card:checked ~ .card-content.right-content {
+	left: 300px;
+	transition-delay: 0s;
+}
+
+/*card-footer open-card*/
+input.open-card:checked ~ .card-footer {
+	opacity: 0;
+	bottom: -100px;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    background-color: #000000;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.botao-seta {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    background-color: #2c3541;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+}
+
+.botao-seta:hover {
+    color: #ffcc70;
+}
+    </style>
+
+    <header>
+        <div class="Brasão">
+            <img src="IMG/Brazao hd.png" alt="Brasão">
+        </div>
+        <a class="botao-seta" href="Serviços.html"> <i class="fas fa-arrow-left">Voltar</i></a>
+    </header>
+<!-- partial:index.partial.html -->
+        <div class="card" id="card-1">
+			<input type="checkbox" class="open-card" id="open-card-1" checked />
+			<label class="open-card-label" for="open-card-1"></label>
+			<input type="checkbox" class="card-toggle" id="card-toggle-1" />
+			<label class="card-toggle-label" for="card-toggle-1"></label>
+			<div class="card-image"></div>
+			<div class="card-header">
+				<h2>Cristoforo<br />Colombo</h2>
+			</div>
+			<div class="card-content left-content">
+				<h3>Build Sniper</h3>
+				<p>Nação: Italiano</p>
+                <p>Tier: Lendário</p>
+                <p>Classe: Encouraçado</p>
+                <p>Aprimoramentos: <br>-Sistema de Mira Mod-1 <br>-Modificaçao de Propulsão 2 <br>-Sistema de Ocultamento Mod-1 <br>-Bateria Principal Mod-3</p>
+			</div>
+			<div class="card-content right-content">
+				<h3>Build do Comandante</h3>
+                    <p>-Comandante: Angelo Iachino <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Fumaça em alto mar <br>-Habilidade lendaria: Testudo</p>
+                    <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Andrew Cunningham</p>
+			</div>
+		</div>
+
+
+		<div class="card" id="card-2">
+			<input type="checkbox" class="open-card" id="open-card-2" checked />
+			<label class="open-card-label" for="open-card-2"></label>
+			<input type="checkbox" class="card-toggle" id="card-toggle-2" />
+			<label class="card-toggle-label" for="card-toggle-2"></label>
+			<div class="card-image"></div>
+			<div class="card-header">
+				<h2>Choose<br />your way</h2>
+			</div>
+			<div class="card-content left-content">
+				<h3>Phasellus bibendum semper</h3>
+				<p>Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam.</p>
+				<p>Put aliquip ex ea commodo consequat. Neque porro quisquam est qui dolorem ipsum</p>
+				<a class="card-button" href="#">Read more</a>
+			</div>
+			<div class="card-content right-content">
+				<h3>Curabitur fermentum purus</h3>
+				<p>Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu nec ante.</p>
+				<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</p>
+				<a class="card-button" href="#">Read more</a>
+			</div>
+			<div class="card-footer">
+				<a href="#">Discover more</a>
+			</div>
+		</div>
+
+
+		<div class="card" id="card-3">
+			<input type="checkbox" class="open-card" id="open-card-3" checked />
+			<label class="open-card-label" for="open-card-3"></label>
+			<input type="checkbox" class="card-toggle" id="card-toggle-3" />
+			<label class="card-toggle-label" for="card-toggle-3"></label>
+			<div class="card-image"></div>
+			<div class="card-header">
+				<h2>Choose<br />your way</h2>
+			</div>
+			<div class="card-content left-content">
+				<h3>Phasellus bibendum semper</h3>
+				<p>Aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullam.</p>
+				<p>Put aliquip ex ea commodo consequat. Neque porro quisquam est qui dolorem ipsum</p>
+				<a class="card-button" href="#">Read more</a>
+			</div>
+			<div class="card-content right-content">
+				<h3>Curabitur fermentum purus</h3>
+				<p>Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu nec ante.</p>
+				<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</p>
+				<a class="card-button" href="#">Read more</a>
+			</div>
+			<div class="card-footer">
+				<a href="#">Discover more</a>
+			</div>
+		</div>
+
+        <div class="card" id="card-4">
+			<input type="checkbox" class="open-card" id="open-card-4" checked />
+			<label class="open-card-label" for="open-card-4"></label>
+			<input type="checkbox" class="card-toggle" id="card-toggle-4" />
+			<label class="card-toggle-label" for="card-toggle-4"></label>
+			<div class="card-image"></div>
+			<div class="card-header">
+				<h2>Cristoforo<br />Colombo</h2>
+			</div>
+			<div class="card-content left-content">
+				<h3>Build Sniper</h3>
+				<p>Nação: Italiano</p>
+                <p>Tier: Lendário</p>
+                <p>Classe: Encouraçado</p>
+                <p>Aprimoramentos: <br>-Sistema de Mira Mod-1 <br>-Modificaçao de Propulsão 2 <br>-Sistema de Ocultamento Mod-1 <br>-Bateria Principal Mod-3</p>
+			</div>
+			<div class="card-content right-content">
+				<h3>Build do Comandante</h3>
+                    <p>-Comandante: Angelo Iachino <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Fumaça em alto mar <br>-Habilidade lendaria: Testudo</p>
+                    <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Andrew Cunningham</p>
+			</div>
+		</div>
+
+        <div class="card" id="card-5">
+			<input type="checkbox" class="open-card" id="open-card-5" checked />
+			<label class="open-card-label" for="open-card-5"></label>
+			<input type="checkbox" class="card-toggle" id="card-toggle-5" />
+			<label class="card-toggle-label" for="card-toggle-5"></label>
+			<div class="card-image"></div>
+			<div class="card-header">
+				<h2>Cristoforo<br />Colombo</h2>
+			</div>
+			<div class="card-content left-content">
+				<h3>Build Sniper</h3>
+				<p>Nação: Italiano</p>
+                <p>Tier: Lendário</p>
+                <p>Classe: Encouraçado</p>
+                <p>Aprimoramentos: <br>-Sistema de Mira Mod-1 <br>-Modificaçao de Propulsão 2 <br>-Sistema de Ocultamento Mod-1 <br>-Bateria Principal Mod-3</p>
+			</div>
+			<div class="card-content right-content">
+				<h3>Build do Comandante</h3>
+                    <p>-Comandante: Angelo Iachino <br>-Canhoneiro Inflamavel <br>-Brocas Giratorias <br>-Atirador de Elite <br>-Fumaça em alto mar <br>-Habilidade lendaria: Testudo</p>
+                    <p>Inspirações: <br>-1 Comandante: Paolo di Revel <br>-2 Andrew Cunningham</p>
+			</div>
+		</div>
+
+</body>
+</html>
